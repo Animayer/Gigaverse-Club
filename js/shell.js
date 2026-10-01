@@ -106,14 +106,38 @@ export function initShell() {
 
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("site-nav");
+  const moreBtn = document.querySelector(".nav-more-btn");
+  const moreMenu = document.getElementById("more-menu");
+
+  function closeMore() {
+    if (!moreMenu || moreMenu.hidden) return;
+    moreMenu.hidden = true;
+    moreBtn?.setAttribute("aria-expanded", "false");
+  }
+
   toggle?.addEventListener("click", () => {
     const open = nav.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    if (!open) closeMore();
   });
   nav?.addEventListener("click", (event) => {
+    if (event.target.closest(".nav-more-btn")) return;
     if (!event.target.closest("a")) return;
     nav.classList.remove("is-open");
     toggle?.setAttribute("aria-expanded", "false");
+    closeMore();
+  });
+  moreBtn?.addEventListener("click", () => {
+    const open = moreMenu.hidden;
+    moreMenu.hidden = !open;
+    moreBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  if (moreMenu?.querySelector("a[aria-current='page']")) moreBtn?.classList.add("is-here");
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".nav-more")) closeMore();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMore();
   });
 
   try {

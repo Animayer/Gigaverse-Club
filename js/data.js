@@ -655,6 +655,12 @@ export const SPOTLIGHT = [
 
 const FACTION_IDS = MASTERS.map((f) => f.id).concat("gigus");
 
+export const BASE_NAMES = [
+  "Default", "Arcade", "CRT", "Cartridge", "Pixel", "Cabinet", "Sprite",
+  "Joystick", "Bit", "Dungeon", "Neon", "Scanline", "Chiptune", "Lantern",
+  "Glitch", "Goldframe", "Synthetic", "Voidbase", "Gigaform",
+];
+
 function tierOf(index) {
   if (index < 8) return "Silver";
   if (index < 16) return "Gold";
@@ -693,6 +699,7 @@ export const ITEMS = Array.from({ length: 48 }, (_, index) => {
     memory: memoryOf(index),
     stub: stubOf(index),
     serial,
+    base: collection === "GLHFers" ? BASE_NAMES[index % BASE_NAMES.length] : "",
   };
 });
 

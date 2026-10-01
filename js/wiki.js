@@ -33,7 +33,7 @@ const DIVES = [
     tags: ["special character", "faction"],
     body: [
       "Sample deep dive. Archon is both a faction you can open from the wars map and one of the Special Characters the wiki calls a 1/1 sample.",
-      "Gigaverse Collectors Hub keeps those roles on separate cards: the hall tracks sample activity, and the wiki keeps the on-record sentence. This post does not add a new canon line.",
+      "Gigaverse Club keeps those roles on separate cards: the hall tracks sample activity, and the wiki keeps the on-record sentence. This post does not add a new canon line.",
     ],
   },
   {

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home · Gigaverse Collectors Hub</title>
+  <title>Home · Gigaverse Club</title>
   <meta name="description" content="Home base mockup for GLHFers and Gigaverse ROM holders. Sample data only.">
-  <meta property="og:site_name" content="Gigaverse Collectors Hub">
-  <meta property="og:title" content="Home · Gigaverse Collectors Hub">
+  <meta property="og:site_name" content="Gigaverse Club">
+  <meta property="og:title" content="Home · Gigaverse Club">
   <link rel="icon" href="assets/letters/G.png" type="image/png">
   <link rel="stylesheet" href="css/lobby.css">
 </head>
@@ -23,7 +23,7 @@
           <img src="assets/letters/H.png" alt="">
           <img src="assets/letters/F.png" alt="">
         </span>
-        <span class="brand-text">Gigaverse Collectors Hub</span>
+        <span class="brand-text">Gigaverse Club</span>
       </a>
       <div class="header-actions">
         <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
@@ -32,17 +32,27 @@
         </button>
         <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
       </div>
-      <nav id="site-nav" aria-label="Primary">
+            <nav id="site-nav" aria-label="Primary">
         <a href="index.html" data-nav="home">Home</a>
         <a href="explorer.html" data-nav="explorer">Explorer</a>
         <a href="vault.html" data-nav="vault">My Vault</a>
-        <a href="party.html" data-nav="party">Party</a>
+        <a href="loadout.html" data-nav="loadout">Loadout</a>
         <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="clans.html" data-nav="clans">Clans</a>
+        <a href="leaderboard.html" data-nav="leaderboard">Board</a>
         <a href="events.html" data-nav="events">Events</a>
-        <a href="wiki.html" data-nav="wiki">Wiki</a>
-        <a href="guide.html" data-nav="guide">Guide</a>
-        <a href="badges.html" data-nav="badges">Badges</a>
-        <a href="burn.html" data-nav="burn">Burn</a>
+        <div class="nav-more">
+          <button type="button" class="nav-more-btn" aria-expanded="false" aria-controls="more-menu">More</button>
+          <div id="more-menu" class="more-menu" hidden>
+            <a href="party.html" data-nav="party">Party</a>
+            <a href="stats.html" data-nav="stats">Stats</a>
+            <a href="drops.html" data-nav="drops">Drops</a>
+            <a href="badges.html" data-nav="badges">Badges</a>
+            <a href="burn.html" data-nav="burn">Burn</a>
+            <a href="wiki.html" data-nav="wiki">Wiki</a>
+            <a href="guide.html" data-nav="guide">Guide</a>
+          </div>
+        </div>
       </nav>
     </header>
   </div>
@@ -52,11 +62,11 @@
         <img class="hero-logo" src="assets/logo/GLHF_Logo_Animated.gif" alt="GLHF animated logo">
         <p class="kicker">Lobby</p>
         <h1>Home base for GLHFers <span class="plain">&</span> ROM holders</h1>
-        <p>Gigaverse Collectors Hub is a community mockup for collectors. GLHFers are an Ethereum ERC-721 from January 2024. Gigaverse ROMs are an ERC-721 on Abstract. Faction Wars on this hub score what people do.</p>
+        <p>Gigaverse Club is a community mockup for collectors. GLHFers are an Ethereum ERC-721 from January 2024. Gigaverse ROMs are an ERC-721 on Abstract. Faction Wars on this hub score what people do. Player guilds, the holder board, and the loadout sit beside that.</p>
         <div class="cta-row">
           <a class="pixel-btn" href="explorer.html">Explorer</a>
-          <a class="pixel-btn alt" href="factions.html">Factions</a>
-          <a class="pixel-btn ghost" href="vault.html">My Vault</a>
+          <a class="pixel-btn alt" href="loadout.html">Loadout</a>
+          <a class="pixel-btn ghost" href="factions.html">Factions</a>
         </div>
       </div>
       <aside class="panel burn-card">
@@ -72,6 +82,30 @@
       <article class="panel stat"><b>10,000</b> ROMs on Abstract</article>
       <article class="panel stat"><b>5,800 / 3,200</b> Silver / Gold</article>
       <article class="panel stat"><b>850 / 150</b> Void / Giga</article>
+    </section>
+    <section class="split" aria-label="Demo loadout">
+      <article class="panel">
+        <p class="kicker">Demo wallet</p>
+        <h2>Giga Loadout</h2>
+        <p class="mono" id="home-address">0xDEMO…GLHF</p>
+        <p id="home-score">Sample collector score loads with the demo vault.</p>
+        <div class="slot-row slots-4" id="home-slots"></div>
+        <div class="cta-row">
+          <a class="pixel-btn" href="loadout.html">Open loadout</a>
+          <a class="pixel-btn ghost" href="vault.html">My Vault</a>
+        </div>
+      </article>
+      <article class="panel">
+        <p class="kicker">Also in the lobby</p>
+        <h2>One hub, both ideas</h2>
+        <ul class="link-list">
+          <li><a href="clans.html">Clans</a> are player-formed guilds. The eight lore factions stay on <a href="factions.html">Factions</a>.</li>
+          <li><a href="leaderboard.html">Holder board</a> ranks sample wallets by pieces. Faction Wars stays the activity season.</li>
+          <li><a href="stats.html">Stats</a> covers supply, holder spread, and GLHFer Base traits.</li>
+          <li><a href="drops.html">Partner drops</a> are empty slots keyed to the collector score.</li>
+          <li><a href="explorer.html">Explorer</a> filters the shared 48-item sample. The URL keeps the filter.</li>
+        </ul>
+      </article>
     </section>
     <section class="split">
       <article class="panel event-card">
@@ -103,7 +137,7 @@
       <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
       <small class="placeholder-tag">placeholder</small>
     </p>
-    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+    <p class="fine">Gigaverse Club. Static mockup. Sample data only. No wallet signing.</p>
   </footer>
   <script type="module" src="js/home.js"></script>
 </body>

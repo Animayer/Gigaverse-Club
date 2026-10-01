@@ -181,7 +181,7 @@ async function drawCard() {
   ctx.fillText(faction.name, 390, 172);
   ctx.font = "16px Gigaverse";
   ctx.fillStyle = "#cbbddd";
-  ctx.fillText("Gigaverse Collectors Hub", 390, 214);
+  ctx.fillText("Gigaverse Club", 390, 214);
   ctx.fillStyle = "#ffd15a";
   ctx.fillText(lines.counts, 390, 268);
   ctx.fillStyle = "#f6f1e6";

@@ -917,17 +917,161 @@ section[id], article[id], a, button {
   outline-offset: 2px;
 }
 
+.nav-more-btn {
+  font-family: "Gigaverse", "Courier New", monospace;
+  font-size: 16px;
+  color: var(--ink);
+  background: #120a20;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+}
+
+.nav-more-btn[aria-expanded="true"],
+.nav-more-btn.is-here,
+.nav-more-btn:hover {
+  background: var(--gold);
+  color: #1a1020;
+}
+
+.more-menu {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 11rem;
+  margin-top: 0.35rem;
+  padding: 0.45rem;
+  background: #160d28;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  z-index: 40;
+}
+
+.faction-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.2rem 0 0.8rem;
+}
+
+.faction-chips button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ink);
+  background: #120a20;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  font: inherit;
+  font-size: 14px;
+  padding: 0.25rem 0.45rem;
+  cursor: pointer;
+}
+
+.faction-chips img { width: 22px; height: 22px; object-fit: contain; }
+
+.faction-chips button[aria-pressed="true"] {
+  background: var(--gold);
+  color: #1a1020;
+}
+
+.pager { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0.8rem 0 1rem; }
+
+.slots-4 { grid-template-columns: repeat(4, 1fr); }
+
+.stat-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.35rem; }
+.stat-list li { display: flex; justify-content: space-between; gap: 0.6rem; align-items: center; border-bottom: 2px solid #3c2a62; padding: 0.2rem 0; }
+.stat-list strong { display: inline-flex; align-items: center; gap: 0.3rem; }
+
+.score-track { height: 18px; background: #07040f; border: 3px solid #000; margin: 0.4rem 0 0.7rem; }
+.score-track > span { display: block; height: 100%; background: var(--gold); }
+
+.emblem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 0.45rem; }
+.emblem {
+  display: grid;
+  justify-items: center;
+  gap: 0.15rem;
+  text-align: center;
+  font-size: 13px;
+  padding: 0.35rem;
+  border: 3px solid #000;
+  background: #120a20;
+}
+.emblem img { width: 48px; height: 48px; object-fit: contain; }
+.emblem.is-off { opacity: 0.4; filter: grayscale(1); }
+
+.dist-row { display: grid; grid-template-columns: 7.5rem 1fr auto; gap: 0.45rem; align-items: center; margin: 0.28rem 0; }
+.dist-row .bar { margin: 0; }
+.dist-row .ficon { width: 22px; height: 22px; vertical-align: middle; }
+
+.clan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+.clan-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: center;
+  text-align: left;
+  color: var(--ink);
+  background: #140c24;
+  border: 4px solid #000;
+  box-shadow: inset 0 0 0 3px var(--line), 4px 4px 0 #000;
+  padding: 0.6rem;
+  cursor: pointer;
+  width: 100%;
+}
+.clan-card img { width: 72px; height: 72px; object-fit: contain; background: #07040f; }
+
+.board-scroll { overflow-x: auto; }
+.board-list { list-style: none; margin: 0; padding: 0; min-width: 640px; }
+.board-row {
+  display: grid;
+  grid-template-columns: 5.2rem 1.4fr 4.2rem 4.2rem 4.2rem 5.5rem;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.45rem 0.35rem;
+  border-bottom: 3px solid #3c2a62;
+}
+.board-head { color: var(--gold); font-family: "Gigaverse", monospace; font-size: 14px; }
+.board-row.is-demo { background: #2a1c08; outline: 3px solid var(--gold); }
+.rank-cell { display: flex; align-items: center; gap: 0.25rem; }
+
+.band-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 0.8rem 0 1rem; }
+.band.is-yours { outline: 3px solid var(--gold); }
+.empty-slot {
+  border: 3px dashed #3c2a62;
+  min-height: 64px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  margin-top: 0.45rem;
+}
+
+.roster { list-style: none; padding: 0; margin: 0.4rem 0; display: grid; gap: 0.35rem; }
+.mono { font-family: "Courier New", ui-monospace, monospace; word-break: break-all; }
+.link-list { margin: 0; padding-left: 1.1rem; }
+.link-list li { margin: 0.35rem 0; }
+
+@media (max-width: 980px) {
+  .clan-grid, .slots-4 { grid-template-columns: 1fr 1fr; }
+}
+
 @media (min-width: 861px) {
-  #site-nav a { font-size: 14px; padding: 0.28rem 0.36rem; }
+  #site-nav a, .nav-more-btn { font-size: 14px; padding: 0.28rem 0.36rem; }
+  .nav-more { position: relative; }
+  .more-menu {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+  }
 }
 
 @media (max-width: 980px) {
   .hero, .split, .two-col, .burn-layout, .rival { grid-template-columns: 1fr; }
   .stat-row, .faction-grid, .council-grid, .recruit-grid { grid-template-columns: repeat(2, 1fr); }
-  .wiki-grid, .reward-track, .badge-grid, .health-metrics { grid-template-columns: repeat(2, 1fr); }
+  .wiki-grid, .reward-track, .badge-grid, .health-metrics, .band-grid { grid-template-columns: repeat(2, 1fr); }
   .relic, .hall-banner { grid-template-columns: 1fr; }
   .hall-icon { justify-self: start; }
-  .slot-row, .gallery { grid-template-columns: repeat(3, 1fr); }
+  .slot-row:not(.slots-4), .gallery { grid-template-columns: repeat(3, 1fr); }
   .party-picks { grid-template-columns: 1fr; }
 }
 
@@ -943,13 +1087,16 @@ section[id], article[id], a, button {
     flex-direction: column;
   }
   #site-nav.is-open { display: flex; }
+  .nav-more, .nav-more-btn, .more-menu { width: 100%; }
+  .nav-more-btn { text-align: left; }
   h1 { font-size: 22px; }
   .big-num { font-size: 36px; }
 }
 
 @media (max-width: 560px) {
-  .stat-row, .faction-grid, .wiki-grid, .council-grid, .recruit-grid, .reward-track, .badge-grid, .health-metrics { grid-template-columns: 1fr; }
-  .slot-row, .gallery { grid-template-columns: 1fr 1fr; }
+  .stat-row, .faction-grid, .wiki-grid, .council-grid, .recruit-grid, .reward-track, .badge-grid, .health-metrics, .band-grid { grid-template-columns: 1fr; }
+  .slot-row, .gallery, .slots-4 { grid-template-columns: 1fr 1fr; }
+  .clan-grid { grid-template-columns: 1fr; }
   .swipe-hint { display: block; }
   .dancer { float: none; }
 }

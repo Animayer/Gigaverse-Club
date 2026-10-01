@@ -1,5 +1,6 @@
 import "./shell.js";
-import { factionById, MEDALS, RANK_MEDAL, standings } from "./data.js";
+import { factionById, MEDALS, RANK_MEDAL, standings, TIER_COLOR } from "./data.js";
+import { demoProfile } from "./club.js";
 import { esc, fmt } from "./util.js";
 import { onBurn } from "./pulse.js";
 import { ORIGINAL_SUPPLY } from "./data.js";
@@ -27,6 +28,23 @@ if (list) {
       <span class="rank-num">${index + 1}</span>
       <span class="faction-cell"><img class="ficon" src="${faction.icon}" alt=""> ${esc(faction.name)}</span>
       <strong>${fmt(row.total)}</strong>
+    </a>`;
+  }).join("");
+}
+
+const profile = demoProfile();
+const scoreEl = document.getElementById("home-score");
+const slotsEl = document.getElementById("home-slots");
+if (scoreEl) {
+  scoreEl.textContent = `Collector score ${fmt(profile.total)} / 100. ${fmt(profile.glhf.length)} GLHFers and ${fmt(profile.roms.length)} ROMs. ${profile.tier.name} holding tier. Sample.`;
+}
+if (slotsEl) {
+  slotsEl.innerHTML = profile.slots.map((item) => {
+    const faction = factionById(item.faction);
+    return `<a class="party-slot" href="loadout.html">
+      <img src="${esc(faction.icon)}" alt="">
+      <strong>${esc(item.name)}</strong>
+      <span class="fine" style="color:${TIER_COLOR[item.tier]}">${esc(item.tier)}</span>
     </a>`;
   }).join("");
 }
