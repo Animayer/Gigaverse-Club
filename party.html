@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Party · Gigaverse Collectors Hub</title>
+  <meta name="description" content="Sample party builder for demo-vault GLHFers. PNG share card only.">
+  <meta property="og:site_name" content="Gigaverse Collectors Hub">
+  <meta property="og:title" content="Party · Gigaverse Collectors Hub">
+  <link rel="icon" href="assets/letters/G.png" type="image/png">
+  <link rel="stylesheet" href="css/lobby.css">
+</head>
+<body data-page="party">
+  <div class="scanlines" aria-hidden="true"></div>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="chrome">
+    <div class="mock-banner" role="status">Mockup - sample data</div>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-letters" aria-hidden="true">
+          <img src="assets/letters/G.png" alt="">
+          <img src="assets/letters/L.png" alt="">
+          <img src="assets/letters/H.png" alt="">
+          <img src="assets/letters/F.png" alt="">
+        </span>
+        <span class="brand-text">Gigaverse Collectors Hub</span>
+      </a>
+      <div class="header-actions">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+        <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
+      </div>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="explorer.html" data-nav="explorer">Explorer</a>
+        <a href="vault.html" data-nav="vault">My Vault</a>
+        <a href="party.html" data-nav="party">Party</a>
+        <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="events.html" data-nav="events">Events</a>
+        <a href="wiki.html" data-nav="wiki">Wiki</a>
+        <a href="guide.html" data-nav="guide">Guide</a>
+        <a href="badges.html" data-nav="badges">Badges</a>
+        <a href="burn.html" data-nav="burn">Burn</a>
+      </nav>
+    </header>
+  </div>
+  <main id="content">
+    <p class="kicker">Demo vault</p>
+    <h1>Party Builder</h1>
+    <p>Pick 3 to 5 GLHFers from the demo vault. Faction mix and synergy tags update as the slots change. Share image downloads a PNG card from this page. Nothing is saved and nothing is priced.</p>
+    <p><a href="vault.html">Back to My Vault</a></p>
+    <section class="panel">
+      <label>Party name
+        <input id="party-name" type="text" maxlength="18" value="Sunday squad" autocomplete="off">
+      </label>
+      <div id="party-slots" class="slot-row"></div>
+      <div class="row-actions">
+        <button type="button" class="pixel-btn small" id="add-slot">Add slot</button>
+        <button type="button" class="pixel-btn ghost small" id="drop-slot">Drop slot</button>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Faction mix</h2>
+      <div id="party-mix" class="chip-row"></div>
+      <h2>Synergy tags</h2>
+      <div id="party-synergy" class="chip-row"></div>
+    </section>
+    <h2>Demo vault GLHFers</h2>
+    <p class="fine">Click a slot, then a GLHFer. The same token cannot sit in two slots. ROMs stay in the vault.</p>
+    <div id="party-picker" class="party-picks"></div>
+    <section class="panel">
+      <h2>Share image</h2>
+      <canvas class="px" id="party-canvas" width="960" height="540"></canvas>
+      <div class="row-actions">
+        <button type="button" class="pixel-btn" id="share-party">Share image</button>
+      </div>
+      <p id="party-status" role="status"></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <img class="footer-logo" src="assets/logo/GLHF_Logo_Deep.png" alt="">
+    <img class="giga-logo" src="assets/logo/Gigaverse_Logo.png" alt="Gigaverse">
+    <p>
+      <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
+      <small class="placeholder-tag">placeholder</small>
+    </p>
+    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+  </footer>
+  <script type="module" src="js/party.js"></script>
+</body>
+</html>

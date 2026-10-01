@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explorer · Gigaverse Collectors Hub</title>
+  <meta name="description" content="Sample explorer for GLHFers and Gigaverse ROMs.">
+  <meta property="og:site_name" content="Gigaverse Collectors Hub">
+  <meta property="og:title" content="Explorer · Gigaverse Collectors Hub">
+  <link rel="icon" href="assets/letters/G.png" type="image/png">
+  <link rel="stylesheet" href="css/lobby.css">
+</head>
+<body data-page="explorer">
+  <div class="scanlines" aria-hidden="true"></div>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="chrome">
+    <div class="mock-banner" role="status">Mockup - sample data</div>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-letters" aria-hidden="true">
+          <img src="assets/letters/G.png" alt="">
+          <img src="assets/letters/L.png" alt="">
+          <img src="assets/letters/H.png" alt="">
+          <img src="assets/letters/F.png" alt="">
+        </span>
+        <span class="brand-text">Gigaverse Collectors Hub</span>
+      </a>
+      <div class="header-actions">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+        <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
+      </div>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="explorer.html" data-nav="explorer">Explorer</a>
+        <a href="vault.html" data-nav="vault">My Vault</a>
+        <a href="party.html" data-nav="party">Party</a>
+        <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="events.html" data-nav="events">Events</a>
+        <a href="wiki.html" data-nav="wiki">Wiki</a>
+        <a href="guide.html" data-nav="guide">Guide</a>
+        <a href="badges.html" data-nav="badges">Badges</a>
+        <a href="burn.html" data-nav="burn">Burn</a>
+      </nav>
+    </header>
+  </div>
+  <main id="content">
+    <p class="kicker">Collections</p>
+    <h1>Explorer</h1>
+    <p>48 sample items. GLHFers on Ethereum, ROMs on Abstract. Traits in this grid are tier, faction, memory, serial, and stub level (1-60). Nothing here is a live token.</p>
+    <form id="filters" class="panel filters" role="search">
+      <label>Collection
+        <select name="collection">
+          <option value="all">All</option>
+          <option value="GLHFers">GLHFers</option>
+          <option value="ROMs">ROMs</option>
+        </select>
+      </label>
+      <label>Tier
+        <select name="tier">
+          <option value="all">All</option>
+          <option>Silver</option>
+          <option>Gold</option>
+          <option>Void</option>
+          <option>Giga</option>
+        </select>
+      </label>
+      <label>Faction
+        <select name="faction">
+          <option value="all">All</option>
+          <option value="archon">Archon</option>
+          <option value="athena">Athena</option>
+          <option value="chobo">Chobo</option>
+          <option value="crusader">Crusader</option>
+          <option value="foxglove">Foxglove</option>
+          <option value="overseer">Overseer</option>
+          <option value="summoner">Summoner</option>
+          <option value="gigus">Gigus</option>
+        </select>
+      </label>
+      <label>Search
+        <input type="search" name="q" placeholder="Name, serial, faction" autocomplete="off">
+      </label>
+      <fieldset>
+        <legend>Memory <span id="mem-label">0-100</span></legend>
+        <input id="mem-min" type="range" min="0" max="100" value="0" aria-label="Memory minimum">
+        <input id="mem-max" type="range" min="0" max="100" value="100" aria-label="Memory maximum">
+      </fieldset>
+      <fieldset>
+        <legend>Stub level <span id="stub-label">1-60</span></legend>
+        <input id="stub-min" type="range" min="1" max="60" value="1" aria-label="Stub minimum">
+        <input id="stub-max" type="range" min="1" max="60" value="60" aria-label="Stub maximum">
+      </fieldset>
+      <button type="button" class="pixel-btn ghost" id="reset-filters">Reset filters</button>
+    </form>
+    <p id="result-count" aria-live="polite">Loading sample items</p>
+    <div class="item-grid" id="grid"></div>
+  </main>
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="pixel-btn ghost small modal-close">Close</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <img class="footer-logo" src="assets/logo/GLHF_Logo_Deep.png" alt="">
+    <img class="giga-logo" src="assets/logo/Gigaverse_Logo.png" alt="Gigaverse">
+    <p>
+      <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
+      <small class="placeholder-tag">placeholder</small>
+    </p>
+    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+  </footer>
+  <script type="module" src="js/explorer.js"></script>
+</body>
+</html>

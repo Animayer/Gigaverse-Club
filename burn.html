@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Burn · Gigaverse Collectors Hub</title>
+  <meta name="description" content="Sample GLHFers burn tracker. Baseline 420 from the docs.">
+  <meta property="og:site_name" content="Gigaverse Collectors Hub">
+  <meta property="og:title" content="Burn · Gigaverse Collectors Hub">
+  <link rel="icon" href="assets/letters/G.png" type="image/png">
+  <link rel="stylesheet" href="css/lobby.css">
+</head>
+<body data-page="burn">
+  <div class="scanlines" aria-hidden="true"></div>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="chrome">
+    <div class="mock-banner" role="status">Mockup - sample data</div>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-letters" aria-hidden="true">
+          <img src="assets/letters/G.png" alt="">
+          <img src="assets/letters/L.png" alt="">
+          <img src="assets/letters/H.png" alt="">
+          <img src="assets/letters/F.png" alt="">
+        </span>
+        <span class="brand-text">Gigaverse Collectors Hub</span>
+      </a>
+      <div class="header-actions">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+        <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
+      </div>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="explorer.html" data-nav="explorer">Explorer</a>
+        <a href="vault.html" data-nav="vault">My Vault</a>
+        <a href="party.html" data-nav="party">Party</a>
+        <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="events.html" data-nav="events">Events</a>
+        <a href="wiki.html" data-nav="wiki">Wiki</a>
+        <a href="guide.html" data-nav="guide">Guide</a>
+        <a href="badges.html" data-nav="badges">Badges</a>
+        <a href="burn.html" data-nav="burn">Burn</a>
+      </nav>
+    </header>
+  </div>
+  <main id="content">
+    <p class="kicker">Auctioneer</p>
+    <h1>Burn tracker</h1>
+    <p>GLHFers launched with a supply of 3,690. The Auctioneer auctions 1/1 Special Characters and uses proceeds to sweep and burn the floor. The chart ends at the documented baseline of 420. The lobby pulse is separate and labeled.</p>
+    <section id="health" class="panel health-panel" aria-label="Collection health"></section>
+    <div class="burn-layout">
+      <aside>
+        <img class="auctioneer" src="assets/gifs/Auctioneer.gif" alt="The Auctioneer, animated">
+        <img class="void-still" src="assets/gifs/void.png" alt="Void backdrop from the media kit">
+      </aside>
+      <div class="stack">
+        <section class="stat-row">
+          <article class="panel stat"><b id="burn-baseline">420</b> docs baseline</article>
+          <article class="panel stat"><b id="burn-pulse">+0</b> sample burns this session</article>
+          <article class="panel stat"><b id="burn-shown">420</b> lobby counter</article>
+          <article class="panel stat"><b id="burn-supply">3,270</b> supply left</article>
+        </section>
+        <div id="burn-chart"></div>
+      </div>
+    </div>
+    <h2>Recent sample burns</h2>
+    <p class="fine">These rows are fiction. They are not chain transactions. The cumulative chart still closes at 420.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>When</th><th>Token</th><th>Sample tx</th><th>Note</th></tr>
+        </thead>
+        <tbody id="burn-table"></tbody>
+      </table>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <img class="footer-logo" src="assets/logo/GLHF_Logo_Deep.png" alt="">
+    <img class="giga-logo" src="assets/logo/Gigaverse_Logo.png" alt="Gigaverse">
+    <p>
+      <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
+      <small class="placeholder-tag">placeholder</small>
+    </p>
+    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+  </footer>
+  <script type="module" src="js/burn.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Events · Gigaverse Collectors Hub</title>
+  <meta name="description" content="Sample events: set hunt, spotlight vote, holder card contest, and the Awakening countdown.">
+  <meta property="og:site_name" content="Gigaverse Collectors Hub">
+  <meta property="og:title" content="Events · Gigaverse Collectors Hub">
+  <link rel="icon" href="assets/letters/G.png" type="image/png">
+  <link rel="stylesheet" href="css/lobby.css">
+</head>
+<body data-page="events">
+  <div class="scanlines" aria-hidden="true"></div>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="chrome">
+    <div class="mock-banner" role="status">Mockup - sample data</div>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-letters" aria-hidden="true">
+          <img src="assets/letters/G.png" alt="">
+          <img src="assets/letters/L.png" alt="">
+          <img src="assets/letters/H.png" alt="">
+          <img src="assets/letters/F.png" alt="">
+        </span>
+        <span class="brand-text">Gigaverse Collectors Hub</span>
+      </a>
+      <div class="header-actions">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+        <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
+      </div>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="explorer.html" data-nav="explorer">Explorer</a>
+        <a href="vault.html" data-nav="vault">My Vault</a>
+        <a href="party.html" data-nav="party">Party</a>
+        <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="events.html" data-nav="events">Events</a>
+        <a href="wiki.html" data-nav="wiki">Wiki</a>
+        <a href="guide.html" data-nav="guide">Guide</a>
+        <a href="badges.html" data-nav="badges">Badges</a>
+        <a href="burn.html" data-nav="burn">Burn</a>
+      </nav>
+    </header>
+  </div>
+  <main id="content">
+    <p class="kicker">Lobby board</p>
+    <h1>Events</h1>
+    <img class="banner-strip banner-arcade" src="assets/gifs/GLHF_Arcade.gif" alt="GLHF arcade marquee">
+    <section id="hunt" class="panel">
+      <h2>Set Hunt</h2>
+      <p>Sample community sets. Progress is fictional and does not read wallets.</p>
+      <article class="quest">
+        <h3>Seven Masters set</h3>
+        <p class="fine">Holders logging one of each Master. 4 / 7 sample desks closed.</p>
+        <div class="bar" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="7"><span style="width:57%;--faction:#6ec8ff"></span></div>
+      </article>
+      <article class="quest">
+        <h3>Tier ladder</h3>
+        <p class="fine">Silver, Gold, Void, and Giga represented in the sample hunt. 3 / 4.</p>
+        <div class="bar" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="4"><span style="width:75%;--faction:#ffd15a"></span></div>
+      </article>
+      <article class="quest">
+        <h3>Stub 40 club</h3>
+        <p class="fine">Game-result stamps at stub level 40 or higher. 18 / 30.</p>
+        <div class="bar" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="30"><span style="width:60%;--faction:#8fe05a"></span></div>
+      </article>
+    </section>
+    <section id="spotlight" class="panel">
+      <h2>Special Character spotlight</h2>
+      <p>Local demo vote. The tally lives in this browser and resets if storage is cleared. It does not mint, burn, or sign.</p>
+      <div class="vote-list" id="vote-list"></div>
+    </section>
+    <section id="contest" class="panel">
+      <h2>Holder card contest</h2>
+      <p>Build a sample card in My Vault and download the PNG. This contest is part of the mockup. No real prize ships from this page.</p>
+      <a class="pixel-btn" href="vault.html#card">Open the card generator</a>
+    </section>
+    <section id="awakening" class="panel">
+      <h2>Gigaverse Online</h2>
+      <p>Coming after The Awakening ends Oct 12. This countdown is the end of The Awakening, not a launch date. Launch date TBA.</p>
+      <div class="countdown" id="countdown" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <img class="footer-logo" src="assets/logo/GLHF_Logo_Deep.png" alt="">
+    <img class="giga-logo" src="assets/logo/Gigaverse_Logo.png" alt="Gigaverse">
+    <p>
+      <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
+      <small class="placeholder-tag">placeholder</small>
+    </p>
+    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+  </footer>
+  <script type="module" src="js/events.js"></script>
+</body>
+</html>

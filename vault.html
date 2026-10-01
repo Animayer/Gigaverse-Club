@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Vault · Gigaverse Collectors Hub</title>
+  <meta name="description" content="Demo vault and holder card generator. No wallet signing.">
+  <meta property="og:site_name" content="Gigaverse Collectors Hub">
+  <meta property="og:title" content="My Vault · Gigaverse Collectors Hub">
+  <link rel="icon" href="assets/letters/G.png" type="image/png">
+  <link rel="stylesheet" href="css/lobby.css">
+</head>
+<body data-page="vault">
+  <div class="scanlines" aria-hidden="true"></div>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="chrome">
+    <div class="mock-banner" role="status">Mockup - sample data</div>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-letters" aria-hidden="true">
+          <img src="assets/letters/G.png" alt="">
+          <img src="assets/letters/L.png" alt="">
+          <img src="assets/letters/H.png" alt="">
+          <img src="assets/letters/F.png" alt="">
+        </span>
+        <span class="brand-text">Gigaverse Collectors Hub</span>
+      </a>
+      <div class="header-actions">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+        <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
+      </div>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="explorer.html" data-nav="explorer">Explorer</a>
+        <a href="vault.html" data-nav="vault">My Vault</a>
+        <a href="party.html" data-nav="party">Party</a>
+        <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="events.html" data-nav="events">Events</a>
+        <a href="wiki.html" data-nav="wiki">Wiki</a>
+        <a href="guide.html" data-nav="guide">Guide</a>
+        <a href="badges.html" data-nav="badges">Badges</a>
+        <a href="burn.html" data-nav="burn">Burn</a>
+      </nav>
+    </header>
+  </div>
+  <main id="content">
+    <section id="gate" class="panel">
+      <p class="kicker">Demo only</p>
+      <h1>My Vault</h1>
+      <p>Connect wallet (demo) loads a sample vault in this browser. It does not open a wallet extension and it does not sign anything.</p>
+      <div class="row-actions">
+        <button type="button" class="pixel-btn" id="connect">Connect wallet (demo)</button>
+        <a class="pixel-btn alt" href="party.html">Party Builder</a>
+      </div>
+    </section>
+    <section id="vault" hidden>
+      <p class="kicker">Sample vault</p>
+      <h1>Holdings for <span id="vault-address">0xDEMO…GLHF</span></h1>
+      <p class="fine">Fake address. Both collections are sample rows from the explorer.</p>
+      <div class="row-actions">
+        <button type="button" class="pixel-btn ghost small" id="disconnect">Disconnect demo</button>
+        <a class="pixel-btn small" href="party.html">Party Builder</a>
+        <a class="pixel-btn small" href="#card">Holder card</a>
+        <a class="pixel-btn small" href="#collage">Vault collage</a>
+      </div>
+      <div class="vault-stats" id="vault-chips"></div>
+      <section class="panel">
+        <h2>Badge strip</h2>
+        <p class="fine">Earned tiers from the sample profile. <a href="badges.html">All badges</a>. Onchain badges possible later.</p>
+        <div id="badge-strip" class="badge-strip"></div>
+      </section>
+      <section class="panel">
+        <h2>Set progress</h2>
+        <div id="set-bars"></div>
+      </section>
+      <h2>Sample holdings</h2>
+      <div class="item-grid" id="holding-grid"></div>
+      <section id="collage" class="panel">
+        <h2>Share my vault</h2>
+        <p class="fine">Collage of the demo holdings. Pick a grid and a faction colour. The handle watermark follows the holder card. Download PNG stays in this browser.</p>
+        <div class="split">
+          <label>Grid
+            <select id="collage-grid">
+              <option value="2">2 x 2</option>
+              <option value="3" selected>3 x 3</option>
+              <option value="4">4 x 4</option>
+            </select>
+          </label>
+          <label>Background
+            <select id="collage-faction"></select>
+          </label>
+        </div>
+        <canvas class="px" id="collage-canvas" width="720" height="720"></canvas>
+        <div class="row-actions">
+          <button type="button" class="pixel-btn" id="download-collage">Download collage PNG</button>
+        </div>
+        <p id="collage-status" role="status"></p>
+      </section>
+      <section id="card" class="panel">
+        <h2>Holder card</h2>
+        <p class="fine">Pick a sprite, a faction icon, and a medal. Download PNG uses the canvas in this page.</p>
+        <label>Handle
+          <input id="handle" type="text" maxlength="16" value="noob_demo" autocomplete="off">
+        </label>
+        <div id="avatar-picker"></div>
+        <div class="split">
+          <label>Faction
+            <select id="card-faction"></select>
+          </label>
+          <label>Medal
+            <select id="card-medal"></select>
+          </label>
+        </div>
+        <canvas class="px" id="holder-canvas" width="960" height="540"></canvas>
+        <div class="row-actions">
+          <button type="button" class="pixel-btn" id="download-card">Download PNG</button>
+        </div>
+        <p id="card-status" role="status"></p>
+      </section>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <img class="footer-logo" src="assets/logo/GLHF_Logo_Deep.png" alt="">
+    <img class="giga-logo" src="assets/logo/Gigaverse_Logo.png" alt="Gigaverse">
+    <p>
+      <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
+      <small class="placeholder-tag">placeholder</small>
+    </p>
+    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+  </footer>
+  <script type="module" src="js/vault.js"></script>
+</body>
+</html>
