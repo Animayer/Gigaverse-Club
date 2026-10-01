@@ -101,6 +101,6 @@ document.getElementById("stats").innerHTML = `
   </section>
   <section class="panel" id="bases">
     <h2>GLHFer Base traits</h2>
-    <p class="fine">All 19 Base traits, rarest first. Counts are sample and sum to the circulating supply. Lit emblems for the demo wallet are on the loadout.</p>
+    <p class="fine">Base names that appear on the 48 GLHFers in this OpenSea slice, rarest in the slice first. Not a full-collection rarity chart, and not the minted supply of 3,690. Lit emblems for the demo wallet are on the loadout.</p>
     ${bars(traits.map((row) => ({ label: row.name, value: row.count, valueLabel: fmt(row.count) })))}
   </section>`;

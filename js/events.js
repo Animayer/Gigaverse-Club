@@ -19,8 +19,11 @@ function renderVotes() {
   document.getElementById("vote-list").innerHTML = rows.map((row) => {
     const pct = Math.round((row.votes / max) * 100);
     const pressed = choice === row.id;
+    const art = row.openseaUrl
+      ? `<a href="${esc(row.openseaUrl)}" target="_blank" rel="noopener noreferrer"><img class="glhfer" src="${row.src}" alt=""></a>`
+      : `<img class="glhfer" src="${row.src}" alt="">`;
     return `<div class="vote-row">
-      <img src="${row.src}" alt="">
+      ${art}
       <div>
         <strong>${esc(row.name)}</strong>
         <div class="bar" role="progressbar" aria-valuenow="${row.votes}" aria-valuemin="0" aria-valuemax="${max}">

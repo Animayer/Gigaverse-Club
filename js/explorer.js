@@ -94,15 +94,20 @@ function matching() {
     if (state.tier !== "all" && item.tier !== state.tier) return false;
     if (state.faction !== "all" && item.faction !== state.faction) return false;
     if (state.held && !vaultIds.has(item.id)) return false;
-    if (item.memory < memMin || item.memory > memMax) return false;
-    if (item.stub < stubMin || item.stub > stubMax) return false;
+    if (item.collection === "ROMs") {
+      if (item.memory < memMin || item.memory > memMax) return false;
+      if (item.stub < stubMin || item.stub > stubMax) return false;
+    } else if (!(memMin === 0 && memMax === 100 && stubMin === 1 && stubMax === 60)) {
+      return false;
+    }
     if (!q) return true;
     const factionName = factionById(item.faction).name.toLowerCase();
-    const hay = `${item.name} ${item.collection} ${item.chain} ${item.tier} ${factionName} ${item.serial} ${item.base}`.toLowerCase();
+    const traitText = item.traits ? Object.entries(item.traits).map(([key, value]) => `${key} ${value}`).join(" ") : "";
+    const hay = `${item.name} ${item.collection} ${item.chain} ${item.tier} ${factionName} ${item.serial} ${item.base} ${traitText}`.toLowerCase();
     return hay.includes(q);
   });
   if (state.sort === "rarest") rows.sort(byRarest);
-  else if (state.sort === "stub") rows.sort((a, b) => b.stub - a.stub || a.serial - b.serial);
+  else if (state.sort === "stub") rows.sort((a, b) => (b.stub || 0) - (a.stub || 0) || a.serial - b.serial);
   else rows.sort((a, b) => a.serial - b.serial);
   return rows;
 }
@@ -134,13 +139,16 @@ function render() {
     const faction = factionById(item.faction);
     const held = vaultIds.has(item.id) ? `<span class="sample-pill">In demo vault</span>` : "";
     const sprite = itemSprite(item, faction);
-    const klass = item.collection === "ROMs" ? "rom-chip" : "icon";
-    const factionNote = item.collection === "GLHFers" ? " · sample faction" : "";
-    return `<button type="button" class="item-card" data-id="${item.id}" style="--faction:${faction.color};--tier:${TIER_COLOR[item.tier]}">
+    const klass = item.collection === "ROMs" ? "rom-chip" : "glhfer";
+    const kicker = item.special ? "Special 1/1" : item.collection === "ROMs" ? item.tier : (item.base || "GLHFer");
+    const detail = item.collection === "GLHFers"
+      ? `${esc(faction.name)} · sample faction`
+      : `${esc(faction.name)} · stub ${item.stub}`;
+    return `<button type="button" class="item-card" data-id="${item.id}" style="--faction:${faction.color};--tier:${TIER_COLOR[item.tier] || "var(--gold)"}">
       <img class="${klass}" src="${sprite}" alt="">
-      <p class="tier">${esc(item.tier)}</p>
+      <p class="tier">${esc(kicker)}</p>
       <h3>${esc(item.name)}</h3>
-      <p class="fine">${esc(item.collection)} · ${esc(item.chain)}<br>${esc(faction.name)}${factionNote} · stub ${item.stub}</p>
+      <p class="fine">${esc(item.collection)} · ${esc(item.chain)}<br>${detail}</p>
       ${held}
     </button>`;
   }).join("");
@@ -167,25 +175,39 @@ function openItem(id) {
   if (!item) return;
   const faction = factionById(item.faction);
   lastFocus = document.activeElement;
-  const baseRow = item.base ? `<dt>Base</dt><dd>${esc(item.base)} <span class="sample-pill">sample</span></dd>` : "";
   const factionValue = item.collection === "GLHFers"
     ? `${esc(faction.name)} <span class="sample-pill">sample assignment</span>`
     : esc(faction.name);
   const portrait = itemPortrait(item, faction);
-  modalBody.innerHTML = `
-    <p><span class="sample-pill">Sample</span> ${vaultIds.has(item.id) ? `<span class="sample-pill">In demo vault</span>` : ""}</p>
-    <img class="portrait${item.collection === "ROMs" ? " rom-portrait" : ""}" src="${portrait}" alt="${esc(item.collection === "ROMs" ? item.tier + " ROM" : faction.name)}">
-    <h2 id="modal-title">${esc(item.name)}</h2>
-    <dl class="traits">
-      <dt>Collection</dt><dd>${esc(item.collection)} · ${esc(item.chain)}</dd>
+  const traitOrder = ["Name", "Special Character", "Base", "Gender", "Eyes", "Mouth", "Head", "Helmet", "Hoodie", "Mask", "Apparel", "Back Item", "Background"];
+  const traitRows = item.traits
+    ? traitOrder.filter((key) => item.traits[key]).map((key) => `<dt>${esc(key)}</dt><dd>${esc(item.traits[key])}</dd>`).join("")
+    : "";
+  const romRows = item.collection === "ROMs" ? `
       <dt>Tier</dt><dd>${esc(item.tier)}</dd>
       <dt>Faction</dt><dd>${factionValue}</dd>
       <dt>Memory</dt><dd>${item.memory}</dd>
       <dt>Serial</dt><dd>${item.serial}</dd>
-      <dt>Stub level</dt><dd>${item.stub} / 60</dd>
-      ${baseRow}
+      <dt>Stub level</dt><dd>${item.stub} / 60</dd>` : `
+      <dt>Faction</dt><dd>${factionValue}</dd>
+      <dt>Token</dt><dd>#${item.serial}</dd>
+      ${traitRows}`;
+  const sea = item.openseaUrl
+    ? `<p><a href="${esc(item.openseaUrl)}" target="_blank" rel="noopener noreferrer">View on OpenSea</a></p>`
+    : "";
+  const note = item.collection === "GLHFers"
+    ? "Art and traits are the OpenSea catalog for this token. Faction is not an onchain GLHFer trait. This vault row is sample."
+    : "Sample ROM. Not a live token. Rarity sort uses tier, then stub.";
+  modalBody.innerHTML = `
+    <p><span class="sample-pill">Sample</span> ${vaultIds.has(item.id) ? `<span class="sample-pill">In demo vault</span>` : ""}</p>
+    <img class="portrait${item.collection === "ROMs" ? " rom-portrait" : " glhfer"}" src="${portrait}" alt="${esc(item.name)}">
+    <h2 id="modal-title">${esc(item.name)}</h2>
+    <dl class="traits">
+      <dt>Collection</dt><dd>${esc(item.collection)} · ${esc(item.chain)}</dd>
+      ${romRows}
     </dl>
-    <p class="fine">Sample item. Not a live token. Rarity sort uses tier, then stub.</p>`;
+    ${sea}
+    <p class="fine">${note}</p>`;
   modal.hidden = false;
   document.body.classList.add("modal-open");
   modal.querySelector(".modal-close").focus();
@@ -277,9 +299,9 @@ romStrip.innerHTML = `
   </div>
   <figure class="benefits">
     <img src="${ART.romBenefits}" alt="ROM tier benefits">
-    <figcaption class="fine">Official ROM benefits. The grid below is still the 48-item sample.</figcaption>
+    <figcaption class="fine">Official ROM benefits. Tier, memory, and stub filters apply to the 24 sample ROMs.</figcaption>
   </figure>`;
-document.getElementById("filters").before(romStrip);
+document.getElementById("pager").after(romStrip);
 romStrip.addEventListener("click", (event) => {
   const button = event.target.closest("[data-tier]");
   if (!button) return;

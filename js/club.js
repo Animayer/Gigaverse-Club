@@ -7,6 +7,7 @@ import {
   ORIGINAL_SUPPLY,
   ROM_SUPPLY,
   factionById,
+  ITEMS,
   itemsByIds,
   VAULT_IDS,
 } from "./data.js";
@@ -20,8 +21,6 @@ export const PAGE_SIZE = 12;
 const TIER_RANK = { Giga: 4, Void: 3, Gold: 2, Silver: 1 };
 
 const EMBLEM_SRC = ART.emblems;
-
-const BASE_WEIGHTS = [70, 48, 36, 30, 24, 20, 16, 14, 12, 10, 8, 7, 5, 4, 3, 2.4, 1.6, 1.1, 0.7];
 
 const OTHER_HOLDERS = [
   { handle: "floor_whale", address: "0xSAMP…01", glhf: 48, rom: 62 },
@@ -127,29 +126,16 @@ export const CLANS = [
   },
 ];
 
-function allocate(supply, weights) {
-  const totalW = weights.reduce((sum, weight) => sum + weight, 0);
-  const rows = weights.map((weight) => {
-    const exact = (supply * weight) / totalW;
-    return { n: Math.floor(exact), frac: exact - Math.floor(exact) };
-  });
-  let left = supply - rows.reduce((sum, row) => sum + row.n, 0);
-  const order = rows
-    .map((row, index) => ({ index, frac: row.frac }))
-    .sort((a, b) => b.frac - a.frac || a.index - b.index);
-  for (let i = 0; i < order.length && left > 0; i += 1) {
-    rows[order[i].index].n += 1;
-    left -= 1;
-  }
-  return rows.map((row) => row.n);
-}
-
-const BASE_COUNTS = allocate(ORIGINAL_SUPPLY - BASE_BURN, BASE_WEIGHTS);
-
 export function baseTraitRows() {
-  return BASE_NAMES.map((name, index) => ({
+  const counts = new Map(BASE_NAMES.map((name) => [name, 0]));
+  ITEMS.forEach((item) => {
+    if (item.collection === "GLHFers" && counts.has(item.base)) {
+      counts.set(item.base, counts.get(item.base) + 1);
+    }
+  });
+  return BASE_NAMES.map((name) => ({
     name,
-    count: BASE_COUNTS[index],
+    count: counts.get(name),
     src: emblemSrc(name),
   })).sort((a, b) => a.count - b.count || a.name.localeCompare(b.name));
 }
@@ -168,7 +154,8 @@ export function walletTier(total) {
 }
 
 export function rarityScore(item) {
-  return (TIER_RANK[item.tier] || 0) * 1000 + item.stub;
+  if (item.special) return 9000;
+  return (TIER_RANK[item.tier] || 0) * 1000 + (item.stub || 0);
 }
 
 export function byRarest(a, b) {
@@ -187,7 +174,7 @@ export function demoProfile() {
   const holdings = itemsByIds(VAULT_IDS);
   const glhf = holdings.filter((item) => item.collection === "GLHFers");
   const roms = holdings.filter((item) => item.collection === "ROMs");
-  const earned = new Set(glhf.map((item) => item.base));
+  const earned = new Set(glhf.map((item) => item.base).filter(Boolean));
   const emblems = BASE_NAMES.map((name) => ({
     name,
     earned: earned.has(name),

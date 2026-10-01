@@ -34,11 +34,12 @@ function drawContain(context, img, x, y, size) {
 function slotCard(item) {
   const faction = factionById(item.faction);
   const src = itemSprite(item, faction);
-  const klass = item.collection === "ROMs" ? "rom-chip" : "";
+  const klass = item.collection === "ROMs" ? "rom-chip" : "glhfer";
+  const label = item.special ? "Special 1/1" : item.collection === "ROMs" ? `${item.tier} · ${faction.name}` : `${item.base || "GLHFer"} · sample faction`;
   return `<a class="party-slot" href="explorer.html?q=${encodeURIComponent(item.name)}">
     <img class="${klass}" src="${esc(src)}" alt="">
     <strong>${esc(item.name)}</strong>
-    <span class="fine" style="color:${TIER_COLOR[item.tier]}">${esc(item.tier)} · ${esc(faction.name)}</span>
+    <span class="fine" style="color:${TIER_COLOR[item.tier] || "var(--gold)"}">${esc(label)}</span>
   </a>`;
 }
 
@@ -95,7 +96,7 @@ function render() {
     </section>
     <section class="panel">
       <h2>Base emblems</h2>
-      <p class="fine">${fmt(profile.earnedCount)} of ${fmt(profile.emblems.length)} GLHFer Base traits are lit. Counts on Stats are sample. Grey emblems are not in this vault.</p>
+      <p class="fine">${fmt(profile.earnedCount)} of ${fmt(profile.emblems.length)} Base names in this OpenSea slice are lit. Stats counts that same slice. Grey emblems are not in this vault. Special 1/1s have no Base trait.</p>
       <div class="emblem-grid">
         ${profile.emblems.map((emblem) => `<article class="emblem ${emblem.earned ? "is-on" : "is-off"}">
           <img src="${esc(emblem.src)}" alt="">
@@ -147,7 +148,7 @@ async function drawCard() {
   context.fillStyle = "#cbbddd";
   context.font = "16px Gigaverse";
   context.fillText(`Score ${profile.total} / 100   ${profile.tier.name}   ${profile.pieces} pieces`, 58, 186);
-  context.fillText(`${profile.glhf.length} GLHF   ${profile.roms.length} ROM   emblems ${profile.earnedCount}/19`, 58, 216);
+  context.fillText(`${profile.glhf.length} GLHF   ${profile.roms.length} ROM   emblems ${profile.earnedCount}/${profile.emblems.length}`, 58, 216);
   context.fillText("Gigaverse Club   sample", 58, 246);
   profile.top.forEach((item, index) => {
     const x = 58 + index * 150;

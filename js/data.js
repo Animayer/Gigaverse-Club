@@ -1,4 +1,5 @@
 import { ART } from "./art.js";
+import { GLHFERS } from "./glhfers.js";
 
 export const BASE_BURN = 420;
 export const ORIGINAL_SUPPLY = 3690;
@@ -640,24 +641,19 @@ export const RECENT_BURNS = [
   ["2026-06-30", "GLHFer #1420", "0xSAMP3e18", "Chart baseline still closes at 420"],
 ];
 
-export const SPOTLIGHT = [
-  { id: "archon", name: "Archon", src: ART.heads.archon, seed: 42 },
-  { id: "athena", name: "Athena", src: ART.heads.athena, seed: 38 },
-  { id: "chobo", name: "Chobo", src: ART.heads.chobo, seed: 36 },
-  { id: "crusader", name: "Crusader", src: ART.heads.crusader, seed: 41 },
-  { id: "foxglove", name: "Foxglove", src: ART.heads.foxglove, seed: 33 },
-  { id: "overseer", name: "Overseer", src: ART.heads.overseer, seed: 29 },
-  { id: "summoner", name: "Summoner", src: ART.heads.summoner, seed: 35 },
-  { id: "auctioneer", name: "Auctioneer", src: ART.gifs.auctioneer, seed: 24 },
-];
+const SPOT_SEEDS = [42, 38, 36, 33, 29, 27, 24, 21];
+
+export const SPOTLIGHT = GLHFERS.filter((token) => token.traits["Special Character"] === "Yes").map((token, index) => ({
+  id: `glhf-${token.tokenId}`,
+  name: token.name,
+  src: token.image,
+  seed: SPOT_SEEDS[index] || 20,
+  openseaUrl: token.openseaUrl,
+}));
 
 const FACTION_IDS = MASTERS.map((f) => f.id).concat("gigus");
 
-export const BASE_NAMES = [
-  "Default", "Arcade", "CRT", "Cartridge", "Pixel", "Cabinet", "Sprite",
-  "Joystick", "Bit", "Dungeon", "Neon", "Scanline", "Chiptune", "Lantern",
-  "Glitch", "Goldframe", "Synthetic", "Voidbase", "Gigaform",
-];
+export const BASE_NAMES = [...new Set(GLHFERS.map((token) => token.traits.Base).filter(Boolean))].sort();
 
 function tierOf(index) {
   if (index < 8) return "Silver";
@@ -682,28 +678,49 @@ function stubOf(index) {
   return (index * 5) % 59 + 1;
 }
 
-export const ITEMS = Array.from({ length: 48 }, (_, index) => {
-  const collection = index % 2 === 0 ? "GLHFers" : "ROMs";
-  const faction = FACTION_IDS[index % FACTION_IDS.length];
-  const serial = collection === "GLHFers" ? 1204 + index * 23 : 8800 + index * 17;
-  const tier = tierOf(index);
-  return {
+const GLHF_ITEMS = GLHFERS.map((token, index) => ({
+  id: `glhf-${token.tokenId}`,
+  name: token.name,
+  collection: "GLHFers",
+  chain: "Ethereum",
+  tier: "",
+  faction: FACTION_IDS[index % FACTION_IDS.length],
+  memory: null,
+  stub: null,
+  serial: Number(token.tokenId),
+  base: token.traits.Base || "",
+  image: token.image,
+  traits: token.traits,
+  openseaUrl: token.openseaUrl,
+  special: token.traits["Special Character"] === "Yes",
+}));
+
+const ROM_ITEMS = [];
+for (let index = 1; index < 48; index += 2) {
+  const serial = 8800 + index * 17;
+  ROM_ITEMS.push({
     id: `item-${index}`,
-    name: collection === "GLHFers" ? `GLHFer #${serial}` : `ROM #${serial}`,
-    collection,
-    chain: collection === "GLHFers" ? "Ethereum" : "Abstract",
-    tier,
-    faction,
+    name: `ROM #${serial}`,
+    collection: "ROMs",
+    chain: "Abstract",
+    tier: tierOf(index),
+    faction: FACTION_IDS[index % FACTION_IDS.length],
     memory: memoryOf(index),
     stub: stubOf(index),
     serial,
-    base: collection === "GLHFers" ? BASE_NAMES[index % BASE_NAMES.length] : "",
-  };
-});
+    base: "",
+    image: "",
+    traits: null,
+    openseaUrl: "",
+    special: false,
+  });
+}
+
+export const ITEMS = [...GLHF_ITEMS, ...ROM_ITEMS];
 
 export const VAULT_IDS = [
-  "item-0", "item-1", "item-4", "item-6", "item-11", "item-14", "item-16",
-  "item-18", "item-21", "item-24", "item-27", "item-31", "item-33", "item-44",
+  "glhf-13", "glhf-70", "glhf-388", "glhf-425", "glhf-610", "glhf-639", "glhf-753", "glhf-845",
+  "item-1", "item-11", "item-21", "item-27", "item-31", "item-33",
 ];
 
 export function itemsByIds(ids) {

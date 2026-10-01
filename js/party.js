@@ -43,8 +43,9 @@ function synergies(items) {
   else if (max >= 2) tags.push("Faction pair");
   if (items.length >= 3 && factions.length === items.length) tags.push("Mixed hall");
   if (factions.length >= 3) tags.push("Cross hall");
-  if (items.some((item) => item.tier === "Giga")) tags.push("Giga chip");
-  if (items.some((item) => item.stub >= 40)) tags.push("High stub");
+  if (items.some((item) => item.special)) tags.push("Special 1/1");
+  const bases = new Set(items.map((item) => item.base).filter(Boolean));
+  if (bases.size === 1 && items.filter((item) => item.base).length >= 2) tags.push("Shared base");
   if (!tags.length) tags.push("No synergy yet");
   return tags;
 }
@@ -65,9 +66,9 @@ function render() {
     const item = slots[index] ? glhfers.find((entry) => entry.id === slots[index]) : null;
     const faction = item ? factionById(item.faction) : null;
     return `<button type="button" class="party-slot ${index === activeSlot ? "is-active" : ""}" data-slot="${index}" aria-pressed="${index === activeSlot}">
-      ${faction ? `<img src="${itemPortrait(item, faction)}" alt="">` : `<span class="slot-empty">Open</span>`}
+      ${faction ? `<img class="glhfer" src="${itemPortrait(item, faction)}" alt="">` : `<span class="slot-empty">Open</span>`}
       <strong>${item ? esc(item.name) : "Empty slot"}</strong>
-      <span class="fine">${faction ? esc(faction.name) : "Pick a GLHFer"}</span>
+      <span class="fine">${item ? `${item.special ? "Special 1/1" : esc(item.base || "GLHFer")} · sample faction` : "Pick a GLHFer"}</span>
     </button>`;
   }).join("");
 
@@ -75,10 +76,10 @@ function render() {
     const faction = factionById(item.faction);
     const used = slots.includes(item.id);
     return `<button type="button" class="party-pick" data-pick="${item.id}" aria-pressed="${used}">
-      <img src="${itemPortrait(item, faction)}" alt="">
+      <img class="glhfer" src="${itemPortrait(item, faction)}" alt="">
       <span>
         <strong>${esc(item.name)}</strong>
-        <span class="fine">${esc(faction.name)} · ${esc(item.tier)} · stub ${item.stub}</span>
+        <span class="fine">${item.special ? "Special 1/1" : esc(item.base || "GLHFer")} · ${esc(faction.name)} sample faction</span>
       </span>
     </button>`;
   }).join("");

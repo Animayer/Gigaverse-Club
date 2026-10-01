@@ -43,11 +43,12 @@ if (slotsEl) {
   slotsEl.innerHTML = profile.slots.map((item) => {
     const faction = factionById(item.faction);
     const src = itemSprite(item, faction);
-    const klass = item.collection === "ROMs" ? "rom-chip" : "";
+    const klass = item.collection === "ROMs" ? "rom-chip" : "glhfer";
+    const label = item.special ? "Special 1/1" : item.collection === "ROMs" ? item.tier : (item.base || "GLHFer");
     return `<a class="party-slot" href="loadout.html">
       <img class="${klass}" src="${esc(src)}" alt="">
       <strong>${esc(item.name)}</strong>
-      <span class="fine" style="color:${TIER_COLOR[item.tier]}">${esc(item.tier)}</span>
+      <span class="fine" style="color:${TIER_COLOR[item.tier] || "var(--gold)"}">${esc(label)}</span>
     </a>`;
   }).join("");
 }

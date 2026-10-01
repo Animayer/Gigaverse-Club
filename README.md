@@ -12,7 +12,7 @@ The lobby keeps the Collector Hub look: dark pixel shell, sticky nav, sound off 
 ## Pages
 
 - **Home** — GLHF hero, sample burn pulse (starts at the documented 420), demo loadout strip, links into clans, the holder board, stats, and partner drops, this week's Faction Wars card, and week-6 standings.
-- **Explorer** — 48 sample GLHFers (Ethereum) and ROMs (Abstract). Filters for collection, tier, faction, memory, stub level, demo-vault only, and text. Faction chips, sort (serial, rarest, stub), and the page number stay in the URL. Item modal lists tier, faction, memory, serial, stub level, and Base on GLHFers.
+- **Explorer** — 48 GLHFers from the OpenSea catalog (Ethereum) and 24 sample ROMs (Abstract). GLHFer traits are the OpenSea fields. Faction on a GLHFer is labeled sample. ROM filters cover tier, faction, memory, and stub level. Faction chips, sort, and the page number stay in the URL. The item modal links each GLHFer to OpenSea.
 - **My Vault** — demo wallet only (`0xDEMO…GLHF`, 8 GLHFers and 6 ROMs). Holdings, tier and faction counts, set progress, a badge strip, a holder card PNG, and a vault collage PNG.
 - **Giga Loadout** — the same demo wallet as slots (two rarest of each collection), 19 Base emblems, a sample collector score (54 / 100 for this vault), a holding tier (Keeper), a stats-card PNG, and copy link. Play and Participation are reserved and not tracked.
 - **Party** — pick 3 to 5 demo-vault GLHFers, see faction mix and synergy tags, name the party, and download a PNG share card.
@@ -20,7 +20,7 @@ The lobby keeps the Collector Hub look: dark pixel shell, sticky nav, sound off 
 - **Clans** — player-formed guilds (Auctioneer's Henchmen, Lobby Regulars, Stub 40 Club, Sunday Callers). A guild can mix lore factions. Join (demo) saves in this browser only.
 - **Holder board** — sixteen sample wallets ranked by piece count. The demo wallet is rank 9 with 14 pieces. This is not the Faction Wars season board and not Badges.
 - **Events** — Set Hunt, Special Character spotlight vote, holder card contest, and a countdown to the end of The Awakening (Oct 12). Gigaverse Online launch date is TBA.
-- **Stats** — circulating GLHFers (3,690 minted minus the 420 sample burn baseline), ROM supply and tier mix, sample holder distributions (GLHFer holders match the collection-health count of 2,410), overlap, top-10 share of the holder board, and 19 Base trait counts.
+- **Stats** — circulating GLHFers (3,690 minted minus the 420 sample burn baseline), ROM supply and tier mix, sample holder distributions (GLHFer holders match the collection-health count of 2,410), overlap, top-10 share of the holder board, and Base counts inside the 48-token slice.
 - **Partner drops** — empty slots in four collector-score bands. The demo wallet sits in Regular (40–59). The partner button does not send a request.
 - **Wiki** — the seven Masters, the Auctioneer, and a Gigus lore card, plus Community Deep Dives.
 - **Guide** — GLHFers 101. Includes a placeholder badge: Seeking official co-sign from Gigaverse.
