@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Vault · Gigaverse Collectors Hub</title>
+  <title>My Vault · Gigaverse Club</title>
   <meta name="description" content="Demo vault and holder card generator. No wallet signing.">
-  <meta property="og:site_name" content="Gigaverse Collectors Hub">
-  <meta property="og:title" content="My Vault · Gigaverse Collectors Hub">
+  <meta property="og:site_name" content="Gigaverse Club">
+  <meta property="og:title" content="My Vault · Gigaverse Club">
   <link rel="icon" href="assets/letters/G.png" type="image/png">
   <link rel="stylesheet" href="css/lobby.css">
 </head>
@@ -23,7 +23,7 @@
           <img src="assets/letters/H.png" alt="">
           <img src="assets/letters/F.png" alt="">
         </span>
-        <span class="brand-text">Gigaverse Collectors Hub</span>
+        <span class="brand-text">Gigaverse Club</span>
       </a>
       <div class="header-actions">
         <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
@@ -32,17 +32,27 @@
         </button>
         <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
       </div>
-      <nav id="site-nav" aria-label="Primary">
+            <nav id="site-nav" aria-label="Primary">
         <a href="index.html" data-nav="home">Home</a>
         <a href="explorer.html" data-nav="explorer">Explorer</a>
         <a href="vault.html" data-nav="vault">My Vault</a>
-        <a href="party.html" data-nav="party">Party</a>
+        <a href="loadout.html" data-nav="loadout">Loadout</a>
         <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="clans.html" data-nav="clans">Clans</a>
+        <a href="leaderboard.html" data-nav="leaderboard">Board</a>
         <a href="events.html" data-nav="events">Events</a>
-        <a href="wiki.html" data-nav="wiki">Wiki</a>
-        <a href="guide.html" data-nav="guide">Guide</a>
-        <a href="badges.html" data-nav="badges">Badges</a>
-        <a href="burn.html" data-nav="burn">Burn</a>
+        <div class="nav-more">
+          <button type="button" class="nav-more-btn" aria-expanded="false" aria-controls="more-menu">More</button>
+          <div id="more-menu" class="more-menu" hidden>
+            <a href="party.html" data-nav="party">Party</a>
+            <a href="stats.html" data-nav="stats">Stats</a>
+            <a href="drops.html" data-nav="drops">Drops</a>
+            <a href="badges.html" data-nav="badges">Badges</a>
+            <a href="burn.html" data-nav="burn">Burn</a>
+            <a href="wiki.html" data-nav="wiki">Wiki</a>
+            <a href="guide.html" data-nav="guide">Guide</a>
+          </div>
+        </div>
       </nav>
     </header>
   </div>
@@ -59,10 +69,11 @@
     <section id="vault" hidden>
       <p class="kicker">Sample vault</p>
       <h1>Holdings for <span id="vault-address">0xDEMO…GLHF</span></h1>
-      <p class="fine">Fake address. Both collections are sample rows from the explorer.</p>
+      <p class="fine">Fake address. GLHFer portraits and traits are from the OpenSea catalog. ROM rows are sample. Faction counts on GLHFers are a sample assignment.</p>
       <div class="row-actions">
         <button type="button" class="pixel-btn ghost small" id="disconnect">Disconnect demo</button>
         <a class="pixel-btn small" href="party.html">Party Builder</a>
+        <a class="pixel-btn small" href="loadout.html">Giga Loadout</a>
         <a class="pixel-btn small" href="#card">Holder card</a>
         <a class="pixel-btn small" href="#collage">Vault collage</a>
       </div>
@@ -129,7 +140,7 @@
       <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
       <small class="placeholder-tag">placeholder</small>
     </p>
-    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+    <p class="fine">Gigaverse Club. Static mockup. Sample data only. No wallet signing.</p>
   </footer>
   <script type="module" src="js/vault.js"></script>
 </body>

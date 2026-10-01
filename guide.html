@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Guide · Gigaverse Collectors Hub</title>
+  <title>Guide · Gigaverse Club</title>
   <meta name="description" content="GLHFers 101 collector guide. Sample figures, unverified on this mockup.">
-  <meta property="og:site_name" content="Gigaverse Collectors Hub">
-  <meta property="og:title" content="Guide · Gigaverse Collectors Hub">
+  <meta property="og:site_name" content="Gigaverse Club">
+  <meta property="og:title" content="Guide · Gigaverse Club">
   <link rel="icon" href="assets/letters/G.png" type="image/png">
   <link rel="stylesheet" href="css/lobby.css">
 </head>
@@ -23,7 +23,7 @@
           <img src="assets/letters/H.png" alt="">
           <img src="assets/letters/F.png" alt="">
         </span>
-        <span class="brand-text">Gigaverse Collectors Hub</span>
+        <span class="brand-text">Gigaverse Club</span>
       </a>
       <div class="header-actions">
         <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
@@ -32,17 +32,27 @@
         </button>
         <button type="button" id="sound-toggle" class="pixel-btn ghost sound-btn" aria-pressed="false">Sound off</button>
       </div>
-      <nav id="site-nav" aria-label="Primary">
+            <nav id="site-nav" aria-label="Primary">
         <a href="index.html" data-nav="home">Home</a>
         <a href="explorer.html" data-nav="explorer">Explorer</a>
         <a href="vault.html" data-nav="vault">My Vault</a>
-        <a href="party.html" data-nav="party">Party</a>
+        <a href="loadout.html" data-nav="loadout">Loadout</a>
         <a href="factions.html" data-nav="factions">Factions</a>
+        <a href="clans.html" data-nav="clans">Clans</a>
+        <a href="leaderboard.html" data-nav="leaderboard">Board</a>
         <a href="events.html" data-nav="events">Events</a>
-        <a href="wiki.html" data-nav="wiki">Wiki</a>
-        <a href="guide.html" data-nav="guide">Guide</a>
-        <a href="badges.html" data-nav="badges">Badges</a>
-        <a href="burn.html" data-nav="burn">Burn</a>
+        <div class="nav-more">
+          <button type="button" class="nav-more-btn" aria-expanded="false" aria-controls="more-menu">More</button>
+          <div id="more-menu" class="more-menu" hidden>
+            <a href="party.html" data-nav="party">Party</a>
+            <a href="stats.html" data-nav="stats">Stats</a>
+            <a href="drops.html" data-nav="drops">Drops</a>
+            <a href="badges.html" data-nav="badges">Badges</a>
+            <a href="burn.html" data-nav="burn">Burn</a>
+            <a href="wiki.html" data-nav="wiki">Wiki</a>
+            <a href="guide.html" data-nav="guide">Guide</a>
+          </div>
+        </div>
       </nav>
     </header>
   </div>
@@ -58,8 +68,8 @@
 
     <section class="panel" id="what">
       <h2>What GLHFers are</h2>
-      <p>GLHFers are the collector set this lobby is built around. Public notes describe them as an Ethereum ERC-721 that launched in January 2024. Gigaverse Collectors Hub does not connect to that contract. Every token row in the explorer and the vault is sample data.</p>
-      <p>Holders use Gigaverse Collectors Hub to browse a mock collection, build a party, read faction halls, and track a sample burn counter. The Auctioneer, shown on the burn page, is the 1/1 tied to floor sweeps in the public story.</p>
+      <p>GLHFers are the collector set this lobby is built around. Public notes describe them as an Ethereum ERC-721 that launched in January 2024. Gigaverse Club does not connect to that contract. Every token row in the explorer and the vault is sample data.</p>
+      <p>Holders use Gigaverse Club to browse a mock collection, build a party, read faction halls, and track a sample burn counter. The Auctioneer, shown on the burn page, is the 1/1 tied to floor sweeps in the public story.</p>
     </section>
 
     <section class="panel" id="supply">
@@ -77,7 +87,7 @@
 
     <section class="panel" id="factions">
       <h2>The 7 factions</h2>
-      <p>The seven Masters of the Gigaverse are the factions on Gigaverse Collectors Hub. Gigus appears in lore halls as the creator, not as one of the seven.</p>
+      <p>The seven Masters of the Gigaverse are the lore factions on Gigaverse Club. Gigus appears in lore halls as the creator, not as one of the seven. Player-formed guilds are a different list on the Clans page.</p>
       <ul class="faction-guide">
         <li><img src="assets/factions/Faction_Archon_Transparant.png" alt=""><a href="factions.html#archon">Archon</a> keeps the Citadel oaths.</li>
         <li><img src="assets/factions/Faction_Athena_Transparant.png" alt=""><a href="factions.html#athena">Athena</a> holds the Star Court.</li>
@@ -93,17 +103,22 @@
     <section class="panel" id="roms">
       <h2>GLHFers, ROMs, and Gigaverse</h2>
       <p>GLHFers and Gigaverse ROMs are two collections in this lobby. GLHFers sit on the Ethereum story. ROMs sit on the Abstract story. The explorer lists both as sample rows with tier, faction, memory, serial, and stub level.</p>
-      <p>Gigaverse is the game world those factions belong to. Gigaverse Online is described as coming after The Awakening, which Gigaverse Collectors Hub counts down to Oct 12. Launch date TBA. Gigaverse Collectors Hub is a community mockup for collectors, not the game client.</p>
+      <p>Gigaverse is the game world those factions belong to. Gigaverse Online is described as coming after The Awakening, which Gigaverse Club counts down to Oct 12. Launch date TBA. Gigaverse Club is a community mockup for collectors, not the game client.</p>
       <p>A GLHFer in a party slot is a sample token from the demo vault. A ROM stays in My Vault and in the explorer. They can share a faction tag in the sample set, and they are still different collections.</p>
     </section>
 
     <section class="panel" id="use">
-      <h2>How to use Gigaverse Collectors Hub</h2>
+      <h2>How to use Gigaverse Club</h2>
       <ol class="guide-list">
-        <li><a href="explorer.html">Explorer</a> filters the 48 sample items. Open a card for tier, faction, memory, serial, and stub.</li>
+        <li><a href="explorer.html">Explorer</a> filters 48 OpenSea GLHFers and 24 sample ROMs. Faction on a GLHFer is a sample assignment. Open a card for the real traits and an OpenSea link.</li>
         <li><a href="vault.html">My Vault</a> uses Connect wallet (demo). The address <span class="plain">0xDEMO…GLHF</span> is fake. No extension opens and nothing is signed. From there, download a holder card, a vault collage, or open the party builder.</li>
+        <li><a href="loadout.html">Giga Loadout</a> is that same wallet as slots, Base emblems, and a sample collector score. Download PNG and copy link stay in the browser.</li>
         <li><a href="party.html">Party</a> seats 3 to 5 demo GLHFers, shows faction mix and synergy tags, and downloads a PNG card.</li>
-        <li><a href="factions.html">Factions</a> is the season board, map, and hall pages. Each hall has a Faction Vault tab with sample art, pinned lore, and war-room posts.</li>
+        <li><a href="factions.html">Factions</a> is the season board, map, and hall pages for the eight lore factions. Each hall has a Faction Vault tab with sample art, pinned lore, and war-room posts.</li>
+        <li><a href="clans.html">Clans</a> lists player-formed guilds. Joining is a demo saved in this browser.</li>
+        <li><a href="leaderboard.html">Holder board</a> sorts sample wallets by pieces. It does not replace Faction Wars or Badges.</li>
+        <li><a href="stats.html">Stats</a> shows supply, holder spread, overlap, and Base trait counts. Invented figures are marked sample.</li>
+        <li><a href="drops.html">Partner drops</a> shows empty slots for the collector-score bands. The request button does not send anything.</li>
         <li><a href="events.html">Events</a> lists sample events and the Awakening countdown.</li>
         <li><a href="wiki.html">Wiki</a> covers the Masters, the Auctioneer, and Gigus, plus Community Deep Dives. The write form is a demo and does not save.</li>
         <li><a href="badges.html">Badges</a> shows stacked bronze, silver, and gold progress for a sample profile.</li>
@@ -119,7 +134,7 @@
       <span class="footer-credit" title="Placeholder credit line for this demo.">Community-run, supported by Gigaverse</span>
       <small class="placeholder-tag">placeholder</small>
     </p>
-    <p class="fine">Gigaverse Collectors Hub. Static mockup. Sample data only. No wallet signing.</p>
+    <p class="fine">Gigaverse Club. Static mockup. Sample data only. No wallet signing.</p>
   </footer>
   <script type="module" src="js/guide.js"></script>
 </body>

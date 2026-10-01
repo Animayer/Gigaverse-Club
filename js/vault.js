@@ -1,5 +1,6 @@
 import "./shell.js";
 import { playSuccess } from "./shell.js";
+import { ART, itemPortrait, itemSprite } from "./art.js";
 import {
   AVATARS,
   DEMO_ADDRESS,
@@ -108,7 +109,7 @@ async function drawCollage() {
   collageCanvas.height = size;
   const icons = await Promise.all(Array.from({ length: n * n }, (_, index) => {
     const item = holdings[index % holdings.length];
-    return loadImage(factionById(item.faction).icon);
+    return loadImage(itemPortrait(item, factionById(item.faction)));
   }));
   try {
     await document.fonts.load("20px Gigaverse");
@@ -154,11 +155,13 @@ async function drawCard() {
   } catch {
     /* canvas falls back to a monospace face */
   }
-  const [avatarImg, iconImg, medalImg, logoImg] = await Promise.all([
+  const glhfHoldings = holdings.filter((item) => item.collection === "GLHFers");
+  const [avatarImg, iconImg, medalImg, logoImg, ...glhfImgs] = await Promise.all([
     loadImage(avatar.src),
     loadImage(faction.icon),
     loadImage(MEDALS[medalId]),
-    loadImage("assets/logo/GLHF_Logo_Shallow.png"),
+    loadImage(ART.logos.glhfShallow),
+    ...glhfHoldings.map((item) => loadImage(item.image)),
   ]);
 
   ctx.imageSmoothingEnabled = false;
@@ -181,7 +184,7 @@ async function drawCard() {
   ctx.fillText(faction.name, 390, 172);
   ctx.font = "16px Gigaverse";
   ctx.fillStyle = "#cbbddd";
-  ctx.fillText("Gigaverse Collectors Hub", 390, 214);
+  ctx.fillText("Gigaverse Club", 390, 214);
   ctx.fillStyle = "#ffd15a";
   ctx.fillText(lines.counts, 390, 268);
   ctx.fillStyle = "#f6f1e6";
@@ -191,7 +194,13 @@ async function drawCard() {
 
   drawImageContain(iconImg, 820, 150, 72);
   drawImageContain(medalImg, 820, 70, 84);
-  if (logoImg) ctx.drawImage(logoImg, 58, 430, 210, 70);
+  if (logoImg) ctx.drawImage(logoImg, 58, 430, 180, 60);
+  glhfImgs.forEach((img, index) => {
+    const x = 250 + index * 86;
+    ctx.fillStyle = "#07040f";
+    ctx.fillRect(x, 418, 78, 78);
+    drawImageContain(img, x + 4, 422, 70);
+  });
 
   ctx.save();
   ctx.translate(700, 450);
@@ -204,7 +213,7 @@ async function drawCard() {
 
 function renderPicker() {
   const mount = document.getElementById("avatar-picker");
-  const groups = ["Sprites", "Expressions", "Heads"];
+  const groups = ["Sprites", "Expressions", "Heads", "Profiles"];
   mount.innerHTML = groups.map((group) => {
     const buttons = AVATARS.filter((avatar) => avatar.group === group).map((avatar) => `
       <button type="button" data-avatar="${avatar.id}" aria-pressed="${avatar.id === avatarId}" title="${esc(avatar.label)}" aria-label="${esc(avatar.label)}">
@@ -241,11 +250,17 @@ function renderVault() {
 
   document.getElementById("holding-grid").innerHTML = holdings.map((item) => {
     const faction = factionById(item.faction);
-    return `<article class="item-card" style="--faction:${faction.color};--tier:${TIER_COLOR[item.tier]}">
-      <img class="icon" src="${faction.icon}" alt="">
-      <p class="tier">${esc(item.tier)}</p>
+    const src = itemSprite(item, faction);
+    const klass = item.collection === "ROMs" ? "rom-chip" : "glhfer";
+    const kicker = item.special ? "Special 1/1" : item.collection === "ROMs" ? item.tier : (item.base || "GLHFer");
+    const detail = item.collection === "GLHFers"
+      ? `${esc(faction.name)} · sample faction`
+      : `${esc(faction.name)} · mem ${item.memory} · stub ${item.stub}`;
+    return `<article class="item-card" style="--faction:${faction.color};--tier:${TIER_COLOR[item.tier] || "var(--gold)"}">
+      <img class="${klass}" src="${src}" alt="">
+      <p class="tier">${esc(kicker)}</p>
       <h3>${esc(item.name)}</h3>
-      <p class="fine">${esc(faction.name)} · mem ${item.memory} · stub ${item.stub}</p>
+      <p class="fine">${detail}</p>
     </article>`;
   }).join("");
 

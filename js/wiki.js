@@ -1,5 +1,5 @@
 import "./shell.js";
-import { FACTIONS } from "./data.js";
+import { FACTIONS, SPOTLIGHT } from "./data.js";
 import { esc } from "./util.js";
 
 const DIVES = [
@@ -27,13 +27,13 @@ const DIVES = [
   },
   {
     id: "dive-archon-character",
-    title: "Archon is a Special Character and a hall",
+    title: "Faction halls are not GLHFer traits",
     author: "oathkeeper",
     upvotes: 204,
     tags: ["special character", "faction"],
     body: [
-      "Sample deep dive. Archon is both a faction you can open from the wars map and one of the Special Characters the wiki calls a 1/1 sample.",
-      "Gigaverse Collectors Hub keeps those roles on separate cards: the hall tracks sample activity, and the wiki keeps the on-record sentence. This post does not add a new canon line.",
+      "Sample deep dive. Archon is a faction hall. The GLHFer 1/1s in this sample are the eight Special Characters at the top of the wiki, with OpenSea portraits. A GLHFer has no faction trait.",
+      "Gigaverse Club keeps those roles on separate cards. The hall tracks sample activity. This post does not add a new canon line.",
     ],
   },
   {
@@ -66,7 +66,7 @@ const auctioneer = {
 const cards = [
   ...FACTIONS.filter((faction) => faction.id !== "gigus").map((faction) => ({
     ...faction,
-    kicker: "Master · 1/1 sample",
+    kicker: "Faction hall",
     link: `factions.html#${faction.id}`,
     linkLabel: "Faction hall",
   })),
@@ -78,6 +78,16 @@ const cards = [
     linkLabel: "Gigus lore hall",
   },
 ];
+
+document.getElementById("specials").innerHTML = SPOTLIGHT.map((entry) => `
+  <article class="wiki-card" id="${entry.id}">
+    <img class="portrait glhfer" src="${entry.src}" alt="${esc(entry.name)}">
+    <p class="kicker">Special Character · 1/1</p>
+    <h2>${esc(entry.name)}</h2>
+    <p>OpenSea marks Special Character as Yes. No other traits are listed on this 1/1 in the sample slice.</p>
+    <p><a href="${esc(entry.openseaUrl)}" target="_blank" rel="noopener noreferrer">View on OpenSea</a></p>
+    <p><a href="explorer.html?q=${encodeURIComponent(entry.name)}&collection=GLHFers">Open in Explorer</a></p>
+  </article>`).join("");
 
 document.getElementById("wiki-grid").innerHTML = cards.map((card) => `
   <article class="wiki-card" id="${card.id}">

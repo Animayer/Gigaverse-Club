@@ -1,4 +1,5 @@
 import "./shell.js";
+import { ART } from "./art.js";
 import { AWAKENING_END, SPOTLIGHT } from "./data.js";
 import { esc, readStore, writeStore } from "./util.js";
 
@@ -18,8 +19,11 @@ function renderVotes() {
   document.getElementById("vote-list").innerHTML = rows.map((row) => {
     const pct = Math.round((row.votes / max) * 100);
     const pressed = choice === row.id;
+    const art = row.openseaUrl
+      ? `<a href="${esc(row.openseaUrl)}" target="_blank" rel="noopener noreferrer"><img class="glhfer" src="${row.src}" alt=""></a>`
+      : `<img class="glhfer" src="${row.src}" alt="">`;
     return `<div class="vote-row">
-      <img src="${row.src}" alt="">
+      ${art}
       <div>
         <strong>${esc(row.name)}</strong>
         <div class="bar" role="progressbar" aria-valuenow="${row.votes}" aria-valuemin="0" aria-valuemax="${max}">
@@ -34,6 +38,19 @@ function renderVotes() {
       bar.style.width = bar.dataset.w;
     });
   });
+}
+
+const promo = document.getElementById("promo");
+if (promo) {
+  promo.innerHTML = `
+    <div class="promo-row">
+      <img src="${ART.banners.masters}" alt="Masters of the Gigaverse auction">
+      <img class="banner-contain" src="${ART.banners.juice}" alt="Gigajuice now live">
+    </div>
+    <div class="promo-row promo-row-slim">
+      <img src="${ART.banners.abstract}" alt="Abstract chain badge">
+      <img src="${ART.banners.posters}" alt="GLHF wall posters">
+    </div>`;
 }
 
 document.getElementById("vote-list").addEventListener("click", (event) => {

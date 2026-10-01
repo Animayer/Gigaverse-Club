@@ -1,5 +1,6 @@
 import "./shell.js";
 import { playSuccess } from "./shell.js";
+import { ART } from "./art.js";
 import {
   FACES,
   factionById,
@@ -118,7 +119,8 @@ function warsHtml() {
   const pct = Math.min(100, Math.round((leader.total / REWARDS[REWARDS.length - 1].need) * 100));
 
   return `
-    <img class="banner-strip" src="assets/gifs/Gigaverse_Banner.gif" alt="Gigaverse banner">
+    <img class="banner-strip" src="${ART.gifs.banner}" alt="Gigaverse banner">
+    <img class="banner-strip promo-banner" src="${ART.banners.masters}" alt="Masters of the Gigaverse auction">
     <nav class="subnav" aria-label="Faction wars">
       <a href="#halls">Halls</a>
       <a href="#relic">Relic</a>
