@@ -1,5 +1,6 @@
 import "./shell.js";
 import { playSuccess } from "./shell.js";
+import { ART, itemSprite } from "./art.js";
 import { factionById, MEDALS, TIER_COLOR } from "./data.js";
 import { demoProfile, SCORE_BANDS, SNAPSHOT_DATE } from "./club.js";
 import { esc, fmt, copyText } from "./util.js";
@@ -32,8 +33,10 @@ function drawContain(context, img, x, y, size) {
 
 function slotCard(item) {
   const faction = factionById(item.faction);
+  const src = itemSprite(item, faction);
+  const klass = item.collection === "ROMs" ? "rom-chip" : "";
   return `<a class="party-slot" href="explorer.html?q=${encodeURIComponent(item.name)}">
-    <img src="${esc(faction.icon)}" alt="">
+    <img class="${klass}" src="${esc(src)}" alt="">
     <strong>${esc(item.name)}</strong>
     <span class="fine" style="color:${TIER_COLOR[item.tier]}">${esc(item.tier)} · ${esc(faction.name)}</span>
   </a>`;
@@ -47,6 +50,13 @@ function render() {
     <h1>Giga Loadout</h1>
     <p class="mono">${esc(profile.address)}</p>
     <p class="fine">Same demo wallet as My Vault. Snapshot ${esc(SNAPSHOT_DATE)}. Earliest sample hold ${esc(profile.earliest)}. Not a chain read.</p>
+    <figure class="shot-solo">
+      <img src="${ART.shots.roms}" alt="Giga ROMs in the game client">
+      <figcaption>Giga ROMs in the client. This loadout is the sample wallet, not a live inventory.</figcaption>
+    </figure>
+    <div class="tier-art compact">
+      ${["Silver", "Gold", "Void", "Giga"].map((tier) => `<figure><img src="${ART.romTiers[tier]}" alt="${tier} ROM"></figure>`).join("")}
+    </div>
     <div class="row-actions">
       <button type="button" class="pixel-btn ghost small" id="disconnect">Disconnect demo</button>
       <a class="pixel-btn small" href="vault.html">My Vault</a>
@@ -116,10 +126,10 @@ async function drawCard() {
   } catch {
     /* canvas falls back to a monospace face */
   }
-  const icons = await Promise.all(profile.top.map((item) => loadImage(factionById(item.faction).icon)));
+  const icons = await Promise.all(profile.top.map((item) => loadImage(itemSprite(item, factionById(item.faction)))));
   const [medalImg, logoImg] = await Promise.all([
     loadImage(MEDALS[profile.tier.medal]),
-    loadImage("assets/logo/GLHF_Logo_Shallow.png"),
+    loadImage(ART.logos.glhfShallow),
   ]);
   context.imageSmoothingEnabled = false;
   context.fillStyle = "#07040e";

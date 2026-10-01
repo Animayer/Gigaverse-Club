@@ -1,4 +1,5 @@
 import "./shell.js";
+import { ART } from "./art.js";
 import { factionById, standings } from "./data.js";
 import { holderBoard, medalForRank } from "./club.js";
 import { esc, fmt } from "./util.js";
@@ -15,6 +16,11 @@ document.getElementById("season-pointer").innerHTML = `
     <a class="pixel-btn" href="factions.html#board">Season board</a>
     <a class="pixel-btn alt" href="badges.html">Badges</a>
   </div>`;
+
+const stubs = document.createElement("figure");
+stubs.className = "panel shot-solo";
+stubs.innerHTML = `<img src="${ART.shots.stubs}" alt="In-game stubs leaderboard"><figcaption>In-game stubs board. Separate from the sample holder board below.</figcaption>`;
+document.getElementById("board").before(stubs);
 
 document.getElementById("board").innerHTML = `
   <div class="board-scroll">

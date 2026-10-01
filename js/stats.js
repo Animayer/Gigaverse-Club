@@ -1,4 +1,5 @@
 import "./shell.js";
+import { ART } from "./art.js";
 import {
   BASE_BURN,
   ORIGINAL_SUPPLY,
@@ -57,6 +58,10 @@ const traits = baseTraitRows();
 
 document.getElementById("stats").innerHTML = `
   <p class="fine">Figures for the ${esc(SNAPSHOT_DATE)} sample snapshot, aligned with the demo wallet ${esc("0xDEMO…GLHF")}. Holder count for GLHFers matches the collection-health panel.</p>
+  <figure class="shot-solo">
+    <img src="${ART.shots.inventory}" alt="Inventory screen">
+    <figcaption>Inventory in the client. Holder counts on this page are sample. ROM supply and the tier mix are the published figures.</figcaption>
+  </figure>
   <div class="split">
     ${collectionBlock({
       id: "glhfers",
@@ -74,7 +79,7 @@ document.getElementById("stats").innerHTML = `
       holders: ROM_HOLDERS,
       avg: romAvg,
       supplyHtml: `${fmt(ROM_SUPPLY)}`,
-      extra: `<p class="fine">${ROM_TIERS.map(([name, count]) => `${esc(name)} ${fmt(count)}`).join(" · ")}</p>`,
+      extra: `<div class="tier-art compact">${ROM_TIERS.map(([name, count]) => `<figure><img src="${ART.romTiers[name]}" alt="${esc(name)} ROM"><figcaption>${esc(name)} ${fmt(count)}</figcaption></figure>`).join("")}</div>`,
     })}
   </div>
   <section class="panel" id="spread">

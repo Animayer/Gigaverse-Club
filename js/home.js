@@ -1,4 +1,5 @@
 import "./shell.js";
+import { ART, itemSprite } from "./art.js";
 import { factionById, MEDALS, RANK_MEDAL, standings, TIER_COLOR } from "./data.js";
 import { demoProfile } from "./club.js";
 import { esc, fmt } from "./util.js";
@@ -41,12 +42,44 @@ if (scoreEl) {
 if (slotsEl) {
   slotsEl.innerHTML = profile.slots.map((item) => {
     const faction = factionById(item.faction);
+    const src = itemSprite(item, faction);
+    const klass = item.collection === "ROMs" ? "rom-chip" : "";
     return `<a class="party-slot" href="loadout.html">
-      <img src="${esc(faction.icon)}" alt="">
+      <img class="${klass}" src="${esc(src)}" alt="">
       <strong>${esc(item.name)}</strong>
       <span class="fine" style="color:${TIER_COLOR[item.tier]}">${esc(item.tier)}</span>
     </a>`;
   }).join("");
+}
+
+const preview = document.getElementById("game-preview");
+if (preview) {
+  const shots = [
+    ["lobby", "Lobby"],
+    ["dungeon", "Dungeon"],
+    ["roms", "Giga ROMs"],
+    ["juice", "Giga Juice"],
+    ["inventory", "Inventory"],
+    ["market", "GigaMarket"],
+    ["workbench", "Workbench"],
+    ["alchemy", "Alchemy"],
+    ["merchant", "Traveling merchant"],
+  ];
+  preview.innerHTML = `
+    <div class="preview-head">
+      <div>
+        <p class="kicker">Official stills</p>
+        <h2>Game preview</h2>
+        <p class="fine">Downscaled screenshots from the Gigaverse client. The in-game stubs board is separate from the sample holder board.</p>
+      </div>
+      <img class="watch" src="${ART.gigusWatch}" alt="Gigus watching">
+    </div>
+    <div class="shot-grid">
+      ${shots.map(([key, label]) => `<figure>
+        <img src="${ART.shots[key]}" alt="${label}">
+        <figcaption>${label}</figcaption>
+      </figure>`).join("")}
+    </div>`;
 }
 
 const burnEl = document.getElementById("burn-num");

@@ -1,5 +1,6 @@
 import "./shell.js";
 import { playSuccess } from "./shell.js";
+import { ART, itemSprite } from "./art.js";
 import {
   AVATARS,
   DEMO_ADDRESS,
@@ -158,7 +159,7 @@ async function drawCard() {
     loadImage(avatar.src),
     loadImage(faction.icon),
     loadImage(MEDALS[medalId]),
-    loadImage("assets/logo/GLHF_Logo_Shallow.png"),
+    loadImage(ART.logos.glhfShallow),
   ]);
 
   ctx.imageSmoothingEnabled = false;
@@ -204,7 +205,7 @@ async function drawCard() {
 
 function renderPicker() {
   const mount = document.getElementById("avatar-picker");
-  const groups = ["Sprites", "Expressions", "Heads"];
+  const groups = ["Sprites", "Expressions", "Heads", "Profiles"];
   mount.innerHTML = groups.map((group) => {
     const buttons = AVATARS.filter((avatar) => avatar.group === group).map((avatar) => `
       <button type="button" data-avatar="${avatar.id}" aria-pressed="${avatar.id === avatarId}" title="${esc(avatar.label)}" aria-label="${esc(avatar.label)}">
@@ -241,11 +242,14 @@ function renderVault() {
 
   document.getElementById("holding-grid").innerHTML = holdings.map((item) => {
     const faction = factionById(item.faction);
+    const src = itemSprite(item, faction);
+    const klass = item.collection === "ROMs" ? "rom-chip" : "icon";
+    const factionNote = item.collection === "GLHFers" ? " · sample faction" : "";
     return `<article class="item-card" style="--faction:${faction.color};--tier:${TIER_COLOR[item.tier]}">
-      <img class="icon" src="${faction.icon}" alt="">
+      <img class="${klass}" src="${src}" alt="">
       <p class="tier">${esc(item.tier)}</p>
       <h3>${esc(item.name)}</h3>
-      <p class="fine">${esc(faction.name)} · mem ${item.memory} · stub ${item.stub}</p>
+      <p class="fine">${esc(faction.name)}${factionNote} · mem ${item.memory} · stub ${item.stub}</p>
     </article>`;
   }).join("");
 

@@ -1,5 +1,6 @@
 import "./shell.js";
 import { playSuccess } from "./shell.js";
+import { ART } from "./art.js";
 import { MEDALS } from "./data.js";
 import { demoProfile, SCORE_BANDS } from "./club.js";
 import { esc, fmt } from "./util.js";
@@ -7,6 +8,10 @@ import { esc, fmt } from "./util.js";
 const profile = demoProfile();
 
 document.getElementById("drops").innerHTML = `
+  <div class="promo-row">
+    <img src="${ART.banners.refer}" alt="Refer to earn">
+    <img class="banner-contain" src="${ART.banners.juice}" alt="Gigajuice now live">
+  </div>
   <p>Snapshot score for <span class="mono">${esc(profile.address)}</span>: <b>${fmt(profile.total)} / 100</b> <span class="sample-pill">sample</span>. Same number as Giga Loadout. It is not Faction Wars points and it does not unlock badges by itself.</p>
   <div class="band-grid">
     ${SCORE_BANDS.map((band) => {

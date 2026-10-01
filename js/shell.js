@@ -1,3 +1,5 @@
+import { ART, artPath } from "./art.js";
+
 const SOUND_KEY = "glhf-hub-sound";
 
 let enabled = false;
@@ -17,10 +19,10 @@ function safePlay(audio) {
 function ensureAudio() {
   if (audioReady) return;
   audioReady = true;
-  clickAudio = new Audio("assets/sounds/Click.mp3");
-  successAudio = new Audio("assets/sounds/Success.mp3");
-  pressAudio = new Audio("assets/sounds/Press_Start.mp3");
-  themeAudio = new Audio("assets/sounds/GLHFers_Theme.mp3");
+  clickAudio = new Audio(ART.sounds.click);
+  successAudio = new Audio(ART.sounds.success);
+  pressAudio = new Audio(ART.sounds.press);
+  themeAudio = new Audio(ART.sounds.theme);
   clickAudio.preload = "auto";
   successAudio.preload = "auto";
   pressAudio.preload = "auto";
@@ -95,9 +97,24 @@ function disableSound() {
   }
 }
 
+function applyArt() {
+  document.querySelectorAll("[data-art]").forEach((node) => {
+    const path = artPath(node.dataset.art);
+    if (path && node.tagName === "IMG") node.src = path;
+  });
+  const credit = document.querySelector(".footer-credit");
+  if (credit && !credit.parentElement.querySelector(".art-credit")) {
+    const line = document.createElement("span");
+    line.className = "art-credit";
+    line.textContent = "Art belongs to GLHF / Gigaverse.";
+    credit.insertAdjacentElement("afterend", line);
+  }
+}
+
 export function initShell() {
   if (document.body.dataset.shell === "on") return;
   document.body.dataset.shell = "on";
+  applyArt();
 
   const page = document.body.dataset.page;
   document.querySelectorAll("#site-nav a").forEach((link) => {

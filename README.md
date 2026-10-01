@@ -40,7 +40,7 @@ Every other number on the site is sample data and labeled as such.
 
 ## Assets
 
-`assets/` holds a curated set of official Gigaverse/GLHF art from the team's media kit (logo, `gigaverse.ttf` font, GigaNoob expressions, character heads, faction icons, leaderboard medals, GIFs, sounds). All rights belong to GLHF / Gigaverse. Sound is off until the lobby toggle is pressed. Click, success, Press Start, and the theme all live under `assets/sounds/`.
+`assets/` holds a curated set of official Gigaverse/GLHF art from the team's media kit (logo, `gigaverse.ttf` font, GigaNoob expressions, character heads, faction icons, leaderboard medals, GIFs, sounds), plus Drive stills staged under `assets/drive/` and web-size copies in `assets/web/`. Image and sound paths are centralized in `js/art.js`. Swap a file there when better art arrives. All rights belong to GLHF / Gigaverse. Sound is off until the lobby toggle is pressed. Click, success, Press Start, and the theme all live under `assets/sounds/`.
 
 ## Stack
 

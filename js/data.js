@@ -1,15 +1,10 @@
+import { ART } from "./art.js";
+
 export const BASE_BURN = 420;
 export const ORIGINAL_SUPPLY = 3690;
 export const ROM_SUPPLY = 10000;
 
-export const MEDALS = {
-  giga: "assets/medals/Icon_Giga-Medal.png",
-  gold: "assets/medals/Icon_Gold-Medal.png",
-  iron: "assets/medals/Icon_Iron-Medal.png",
-  copper: "assets/medals/Icon_Copper-Medal.png",
-  stone: "assets/medals/Icon_Stone-Medal.png",
-  wood: "assets/medals/Icon_Wood-Medal.png",
-};
+export const MEDALS = ART.medals;
 
 export const RANK_MEDAL = ["giga", "gold", "iron", "copper", "stone", "wood"];
 
@@ -20,46 +15,47 @@ export const TIER_COLOR = {
   Giga: "#5dffe8",
 };
 
-export const FACES = {
-  default: "assets/expressions/noob_default.png",
-  happy: "assets/expressions/noob_happy.png",
-  shades: "assets/expressions/noob_shades.png",
-  anger: "assets/expressions/noob_anger.png",
-  yay: "assets/expressions/noob_yay1.png",
-  cry: "assets/expressions/noob_cry.png",
-  bigeyes: "assets/expressions/noob_bigeyes.png",
-  uwu: "assets/expressions/noob_uwu1.png",
-  orly: "assets/expressions/noob_orly.png",
-  ded: "assets/expressions/noob_ded.png",
+export const FACES = ART.faces;
+
+const FACE_LABEL = {
+  default: "Default", happy: "Happy", shades: "Shades", anger: "Anger", yay: "Yay",
+  cry: "Cry", bigeyes: "Big eyes", uwu: "Uwu", orly: "Orly", ded: "Ded",
+  blush: "Blush", clown: "Clown", look: "Look", pain: "Pain", really: "Really",
+  sadge: "Sadge", sideeye: "Side eye", unimpressed: "Unimpressed", yay2: "Yay 2",
+};
+
+const HEAD_LABEL = {
+  archon: "Archon", athena: "Athena", chobo: "Chobo", crusader: "Crusader",
+  foxglove: "Foxglove", overseer: "Overseer", summoner: "Summoner", knight: "Knight",
+  blackknight: "Black knight", crow: "Crow", greycloak: "Grey cloak", redcloak: "Red cloak",
+  boss: "Boss", impaler: "Impaler", enemy: "Enemy",
 };
 
 export const AVATARS = [
-  { id: "giganoob", group: "Sprites", label: "Giganoob", src: "assets/sprites/Giganoob_PFP.png" },
-  { id: "clean", group: "Sprites", label: "Clean noob", src: "assets/sprites/Noob_Clean_Avatar.png" },
-  { id: "default", group: "Expressions", label: "Default", src: FACES.default },
-  { id: "happy", group: "Expressions", label: "Happy", src: FACES.happy },
-  { id: "shades", group: "Expressions", label: "Shades", src: FACES.shades },
-  { id: "anger", group: "Expressions", label: "Anger", src: FACES.anger },
-  { id: "yay", group: "Expressions", label: "Yay", src: FACES.yay },
-  { id: "cry", group: "Expressions", label: "Cry", src: FACES.cry },
-  { id: "bigeyes", group: "Expressions", label: "Big eyes", src: FACES.bigeyes },
-  { id: "uwu", group: "Expressions", label: "Uwu", src: FACES.uwu },
-  { id: "orly", group: "Expressions", label: "Orly", src: FACES.orly },
-  { id: "ded", group: "Expressions", label: "Ded", src: FACES.ded },
-  { id: "head-archon", group: "Heads", label: "Archon", src: "assets/heads/archon_front.png" },
-  { id: "head-athena", group: "Heads", label: "Athena", src: "assets/heads/athena_front.png" },
-  { id: "head-chobo", group: "Heads", label: "Chobo", src: "assets/heads/chobo_front.png" },
-  { id: "head-crusader", group: "Heads", label: "Crusader", src: "assets/heads/crusader_front.png" },
-  { id: "head-foxglove", group: "Heads", label: "Foxglove", src: "assets/heads/foxglove_front.png" },
-  { id: "head-overseer", group: "Heads", label: "Overseer", src: "assets/heads/overseer_front.png" },
-  { id: "head-summoner", group: "Heads", label: "Summoner", src: "assets/heads/summoner_front.png" },
-  { id: "head-knight", group: "Heads", label: "Knight", src: "assets/heads/knight_front.png" },
-  { id: "head-blackknight", group: "Heads", label: "Black knight", src: "assets/heads/blackknight_front.png" },
-  { id: "head-crow", group: "Heads", label: "Crow", src: "assets/heads/crow_front.png" },
-  { id: "head-greycloak", group: "Heads", label: "Grey cloak", src: "assets/heads/greycloak_front.png" },
-  { id: "head-redcloak", group: "Heads", label: "Red cloak", src: "assets/heads/redcloak_front.png" },
-  { id: "head-boss", group: "Heads", label: "Boss", src: "assets/heads/boss_1.png" },
-  { id: "head-impaler", group: "Heads", label: "Impaler", src: "assets/heads/impaler_1.png" },
+  { id: "giganoob", group: "Sprites", label: "Giganoob", src: ART.sprites.giganoob },
+  { id: "clean", group: "Sprites", label: "Clean noob", src: ART.sprites.clean },
+  { id: "dance", group: "Sprites", label: "Dance", src: ART.reactions.dance },
+  { id: "praise", group: "Sprites", label: "Praise", src: ART.reactions.praise },
+  { id: "haha", group: "Sprites", label: "Haha", src: ART.reactions.haha },
+  { id: "running", group: "Sprites", label: "Running", src: ART.reactions.running },
+  ...Object.entries(ART.faces).map(([id, src]) => ({
+    id,
+    group: "Expressions",
+    label: FACE_LABEL[id] || id,
+    src,
+  })),
+  ...Object.entries(ART.heads).map(([id, src]) => ({
+    id: `head-${id}`,
+    group: "Heads",
+    label: HEAD_LABEL[id] || id,
+    src,
+  })),
+  ...Object.entries(ART.sideHeads).map(([id, src]) => ({
+    id: `side-${id}`,
+    group: "Profiles",
+    label: HEAD_LABEL[id] || id,
+    src,
+  })),
 ];
 
 const MASTERS = [
@@ -277,6 +273,8 @@ const GIGUS = {
 function expandFaction(raw) {
   return {
     ...raw,
+    icon: ART.factionIcons[raw.id] || raw.icon,
+    head: ART.heads[raw.id] || raw.head,
     roster: raw.roster.map(([name, face, pts]) => ({ name, face, pts })),
     council: raw.council.map(([role, holder, medal]) => ({ role, holder, medal })),
   };
@@ -643,14 +641,14 @@ export const RECENT_BURNS = [
 ];
 
 export const SPOTLIGHT = [
-  { id: "archon", name: "Archon", src: "assets/heads/archon_front.png", seed: 42 },
-  { id: "athena", name: "Athena", src: "assets/heads/athena_front.png", seed: 38 },
-  { id: "chobo", name: "Chobo", src: "assets/heads/chobo_front.png", seed: 36 },
-  { id: "crusader", name: "Crusader", src: "assets/heads/crusader_front.png", seed: 41 },
-  { id: "foxglove", name: "Foxglove", src: "assets/heads/foxglove_front.png", seed: 33 },
-  { id: "overseer", name: "Overseer", src: "assets/heads/overseer_front.png", seed: 29 },
-  { id: "summoner", name: "Summoner", src: "assets/heads/summoner_front.png", seed: 35 },
-  { id: "auctioneer", name: "Auctioneer", src: "assets/gifs/Auctioneer.gif", seed: 24 },
+  { id: "archon", name: "Archon", src: ART.heads.archon, seed: 42 },
+  { id: "athena", name: "Athena", src: ART.heads.athena, seed: 38 },
+  { id: "chobo", name: "Chobo", src: ART.heads.chobo, seed: 36 },
+  { id: "crusader", name: "Crusader", src: ART.heads.crusader, seed: 41 },
+  { id: "foxglove", name: "Foxglove", src: ART.heads.foxglove, seed: 33 },
+  { id: "overseer", name: "Overseer", src: ART.heads.overseer, seed: 29 },
+  { id: "summoner", name: "Summoner", src: ART.heads.summoner, seed: 35 },
+  { id: "auctioneer", name: "Auctioneer", src: ART.gifs.auctioneer, seed: 24 },
 ];
 
 const FACTION_IDS = MASTERS.map((f) => f.id).concat("gigus");

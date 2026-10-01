@@ -297,6 +297,123 @@ main {
   object-position: center top;
 }
 
+.hero-island {
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+  object-position: center 62%;
+  border: 4px solid #000;
+  margin: 0 0 0.7rem;
+  image-rendering: auto;
+}
+
+.hero-copy { position: relative; }
+.hero-sticker {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.game-preview { margin-bottom: 1rem; }
+.game-preview:empty { display: none; }
+.preview-head { display: flex; gap: 1rem; align-items: flex-end; justify-content: space-between; }
+.preview-head .watch { width: 96px; height: auto; flex: 0 0 auto; }
+
+.shot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+.shot-grid figure, .shot-solo { margin: 0 0 1rem; }
+.shot-grid img, .shot-solo img, .promo-row img, .promo-banner, .hero-island {
+  image-rendering: auto;
+}
+.shot-grid img, .shot-solo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 4px solid #000;
+}
+.shot-grid figcaption, .shot-solo figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.promo-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+}
+.promo-row-slim { grid-template-columns: 0.7fr 1.3fr; }
+.promo-row img, .promo-banner {
+  width: 100%;
+  height: 148px;
+  object-fit: cover;
+  object-position: center;
+  border: 4px solid #000;
+  display: block;
+}
+
+.tier-art {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 0.4rem 0 0.8rem;
+}
+.tier-chip, .tier-art figure {
+  margin: 0;
+  background: #07040f;
+  border: 4px solid #000;
+  padding: 0.35rem;
+  text-align: center;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.tier-art figure { cursor: default; }
+.tier-chip img, .tier-art img {
+  width: 74px;
+  height: 98px;
+  object-fit: contain;
+}
+.tier-chip span, .tier-art figcaption {
+  display: block;
+  font-family: "Gigaverse", monospace;
+  font-size: 14px;
+  color: var(--gold);
+}
+.benefits img {
+  width: min(100%, 860px);
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border: 0;
+  image-rendering: pixelated;
+}
+.promo-row img.banner-contain {
+  object-fit: contain;
+  background: #07040f;
+  height: 180px;
+}
+.item-card .rom-chip, .party-slot img.rom-chip {
+  width: 72px;
+  height: 96px;
+  object-fit: contain;
+  background: #07040f;
+}
+.portrait.rom-portrait { background: #07040f; }
+.art-credit {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 0.15rem;
+}
+
 @media (max-width: 700px) {
   .banner-arcade { height: 210px; }
 }
@@ -1072,6 +1189,9 @@ section[id], article[id], a, button {
   .relic, .hall-banner { grid-template-columns: 1fr; }
   .hall-icon { justify-self: start; }
   .slot-row:not(.slots-4), .gallery { grid-template-columns: repeat(3, 1fr); }
+  .shot-grid { grid-template-columns: 1fr 1fr; }
+  .promo-row, .promo-row-slim { grid-template-columns: 1fr; }
+  .preview-head { align-items: flex-start; }
   .party-picks { grid-template-columns: 1fr; }
 }
 
@@ -1095,7 +1215,9 @@ section[id], article[id], a, button {
 
 @media (max-width: 560px) {
   .stat-row, .faction-grid, .wiki-grid, .council-grid, .recruit-grid, .reward-track, .badge-grid, .health-metrics, .band-grid { grid-template-columns: 1fr; }
-  .slot-row, .gallery, .slots-4 { grid-template-columns: 1fr 1fr; }
+  .slot-row, .gallery, .slots-4, .shot-grid, .tier-art { grid-template-columns: 1fr 1fr; }
+  .hero-sticker { width: 52px; height: 52px; }
+  .hero-island { height: 120px; }
   .clan-grid { grid-template-columns: 1fr; }
   .swipe-hint { display: block; }
   .dancer { float: none; }

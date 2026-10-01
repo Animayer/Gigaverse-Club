@@ -2,6 +2,8 @@
 
 Source: Ryan Mayer's Google Drive (rmayer417@gmail.com), folder "Gigaverse" (1BuoPZzjXy1C8l_nxLjNuJSWhct_eI_zw) and subfolders. Nothing on Drive or in the repo was modified. All files confirmed NOT byte-identical to anything in repo `assets/` (md5 check). Staged: 67 files.
 
+Pages load paths from `js/art.js`. Game screenshots are the 1400px JPEG copies in `assets/web/`. ROM tier chips are the cropped stills in `assets/web/rom-*.png`. Full-size PNGs and Drive files that no page references were removed from this branch so the site does not request multi-megabyte originals. The `drive-assets` branch still has the full staging set.
+
 Note: the Drive "Gigaverse_Logo_Sub_transparant.png" is byte-identical to repo logo/Gigaverse_Logo.png, so it was not staged.
 
 | Staged file | Drive id | Original name | Size | Dimensions | Description |

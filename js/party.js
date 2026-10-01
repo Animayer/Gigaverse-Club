@@ -1,5 +1,6 @@
 import "./shell.js";
 import { playSuccess } from "./shell.js";
+import { itemPortrait } from "./art.js";
 import { factionById, itemsByIds, VAULT_IDS } from "./data.js";
 import { esc, pixelSafe } from "./util.js";
 
@@ -64,7 +65,7 @@ function render() {
     const item = slots[index] ? glhfers.find((entry) => entry.id === slots[index]) : null;
     const faction = item ? factionById(item.faction) : null;
     return `<button type="button" class="party-slot ${index === activeSlot ? "is-active" : ""}" data-slot="${index}" aria-pressed="${index === activeSlot}">
-      ${faction ? `<img src="${faction.head}" alt="">` : `<span class="slot-empty">Open</span>`}
+      ${faction ? `<img src="${itemPortrait(item, faction)}" alt="">` : `<span class="slot-empty">Open</span>`}
       <strong>${item ? esc(item.name) : "Empty slot"}</strong>
       <span class="fine">${faction ? esc(faction.name) : "Pick a GLHFer"}</span>
     </button>`;
@@ -74,7 +75,7 @@ function render() {
     const faction = factionById(item.faction);
     const used = slots.includes(item.id);
     return `<button type="button" class="party-pick" data-pick="${item.id}" aria-pressed="${used}">
-      <img src="${faction.icon}" alt="">
+      <img src="${itemPortrait(item, faction)}" alt="">
       <span>
         <strong>${esc(item.name)}</strong>
         <span class="fine">${esc(faction.name)} · ${esc(item.tier)} · stub ${item.stub}</span>
@@ -112,7 +113,7 @@ async function drawParty() {
   } catch {
     /* canvas falls back to a monospace face */
   }
-  const heads = await Promise.all(lined.map((item) => (item ? loadImage(factionById(item.faction).head) : null)));
+  const heads = await Promise.all(lined.map((item) => (item ? loadImage(itemPortrait(item, factionById(item.faction))) : null)));
   const logo = await loadImage("assets/logo/GLHF_Logo_Shallow.png");
 
   ctx.imageSmoothingEnabled = false;

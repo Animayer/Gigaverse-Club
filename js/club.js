@@ -1,3 +1,4 @@
+import { ART } from "./art.js";
 import {
   BASE_BURN,
   BASE_NAMES,
@@ -18,27 +19,7 @@ export const PAGE_SIZE = 12;
 
 const TIER_RANK = { Giga: 4, Void: 3, Gold: 2, Silver: 1 };
 
-const EMBLEM_SRC = [
-  "assets/expressions/noob_default.png",
-  "assets/expressions/noob_happy.png",
-  "assets/expressions/noob_shades.png",
-  "assets/expressions/noob_anger.png",
-  "assets/expressions/noob_yay1.png",
-  "assets/expressions/noob_cry.png",
-  "assets/expressions/noob_bigeyes.png",
-  "assets/expressions/noob_uwu1.png",
-  "assets/expressions/noob_orly.png",
-  "assets/expressions/noob_ded.png",
-  "assets/heads/archon_front.png",
-  "assets/heads/athena_front.png",
-  "assets/heads/chobo_front.png",
-  "assets/heads/crusader_front.png",
-  "assets/heads/foxglove_front.png",
-  "assets/heads/overseer_front.png",
-  "assets/heads/summoner_front.png",
-  "assets/heads/knight_front.png",
-  "assets/heads/crow_front.png",
-];
+const EMBLEM_SRC = ART.emblems;
 
 const BASE_WEIGHTS = [70, 48, 36, 30, 24, 20, 16, 14, 12, 10, 8, 7, 5, 4, 3, 2.4, 1.6, 1.1, 0.7];
 
@@ -71,7 +52,7 @@ export const CLANS = [
   {
     id: "henchmen",
     name: "Auctioneer's Henchmen",
-    art: "assets/gifs/Auctioneer.gif",
+    art: ART.gifs.auctioneer,
     focus: "Burn watch",
     members: 48,
     demoMember: true,
@@ -90,7 +71,7 @@ export const CLANS = [
   {
     id: "regulars",
     name: "Lobby Regulars",
-    art: "assets/expressions/noob_happy.png",
+    art: ART.faces.happy,
     focus: "Social",
     members: 120,
     demoMember: false,
@@ -109,7 +90,7 @@ export const CLANS = [
   {
     id: "stub40",
     name: "Stub 40 Club",
-    art: "assets/medals/Icon_Iron-Medal.png",
+    art: ART.medals.iron,
     focus: "Stub level",
     members: 36,
     demoMember: false,
@@ -128,7 +109,7 @@ export const CLANS = [
   {
     id: "callers",
     name: "Sunday Callers",
-    art: "assets/heads/summoner_front.png",
+    art: ART.heads.summoner,
     focus: "Quests",
     members: 64,
     demoMember: false,

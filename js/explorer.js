@@ -1,4 +1,5 @@
 import "./shell.js";
+import { ART, itemPortrait, itemSprite } from "./art.js";
 import { FACES, factionById, FACTIONS, ITEMS, TIER_COLOR, VAULT_IDS } from "./data.js";
 import { byRarest, PAGE_SIZE } from "./club.js";
 import { esc, fmt } from "./util.js";
@@ -132,11 +133,14 @@ function render() {
   grid.innerHTML = view.map((item) => {
     const faction = factionById(item.faction);
     const held = vaultIds.has(item.id) ? `<span class="sample-pill">In demo vault</span>` : "";
+    const sprite = itemSprite(item, faction);
+    const klass = item.collection === "ROMs" ? "rom-chip" : "icon";
+    const factionNote = item.collection === "GLHFers" ? " · sample faction" : "";
     return `<button type="button" class="item-card" data-id="${item.id}" style="--faction:${faction.color};--tier:${TIER_COLOR[item.tier]}">
-      <img class="icon" src="${faction.icon}" alt="">
+      <img class="${klass}" src="${sprite}" alt="">
       <p class="tier">${esc(item.tier)}</p>
       <h3>${esc(item.name)}</h3>
-      <p class="fine">${esc(item.collection)} · ${esc(item.chain)}<br>${esc(faction.name)} · stub ${item.stub}</p>
+      <p class="fine">${esc(item.collection)} · ${esc(item.chain)}<br>${esc(faction.name)}${factionNote} · stub ${item.stub}</p>
       ${held}
     </button>`;
   }).join("");
@@ -164,14 +168,18 @@ function openItem(id) {
   const faction = factionById(item.faction);
   lastFocus = document.activeElement;
   const baseRow = item.base ? `<dt>Base</dt><dd>${esc(item.base)} <span class="sample-pill">sample</span></dd>` : "";
+  const factionValue = item.collection === "GLHFers"
+    ? `${esc(faction.name)} <span class="sample-pill">sample assignment</span>`
+    : esc(faction.name);
+  const portrait = itemPortrait(item, faction);
   modalBody.innerHTML = `
     <p><span class="sample-pill">Sample</span> ${vaultIds.has(item.id) ? `<span class="sample-pill">In demo vault</span>` : ""}</p>
-    <img class="portrait" src="${faction.head}" alt="${esc(faction.name)} portrait">
+    <img class="portrait${item.collection === "ROMs" ? " rom-portrait" : ""}" src="${portrait}" alt="${esc(item.collection === "ROMs" ? item.tier + " ROM" : faction.name)}">
     <h2 id="modal-title">${esc(item.name)}</h2>
     <dl class="traits">
       <dt>Collection</dt><dd>${esc(item.collection)} · ${esc(item.chain)}</dd>
       <dt>Tier</dt><dd>${esc(item.tier)}</dd>
-      <dt>Faction</dt><dd>${esc(faction.name)}</dd>
+      <dt>Faction</dt><dd>${factionValue}</dd>
       <dt>Memory</dt><dd>${item.memory}</dd>
       <dt>Serial</dt><dd>${item.serial}</dd>
       <dt>Stub level</dt><dd>${item.stub} / 60</dd>
@@ -254,6 +262,32 @@ document.addEventListener("keydown", (event) => {
 window.addEventListener("popstate", () => {
   state = readState();
   syncForm();
+  render();
+});
+
+const romStrip = document.createElement("section");
+romStrip.className = "panel rom-strip";
+romStrip.innerHTML = `
+  <p class="kicker">Official tier art</p>
+  <h2>ROM tiers</h2>
+  <div class="tier-art">
+    ${["Silver", "Gold", "Void", "Giga"].map((tier) => `<button type="button" class="tier-chip" data-tier="${tier}" aria-label="Show ${tier} ROMs">
+      <img src="${ART.romTiers[tier]}" alt="${tier} ROM">
+    </button>`).join("")}
+  </div>
+  <figure class="benefits">
+    <img src="${ART.romBenefits}" alt="ROM tier benefits">
+    <figcaption class="fine">Official ROM benefits. The grid below is still the 48-item sample.</figcaption>
+  </figure>`;
+document.getElementById("filters").before(romStrip);
+romStrip.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-tier]");
+  if (!button) return;
+  form.tier.value = button.dataset.tier;
+  form.collection.value = "ROMs";
+  pullForm(1);
+  syncForm();
+  writeUrl("push");
   render();
 });
 

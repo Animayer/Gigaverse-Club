@@ -1,4 +1,5 @@
 import "./shell.js";
+import { ART } from "./art.js";
 import { AWAKENING_END, SPOTLIGHT } from "./data.js";
 import { esc, readStore, writeStore } from "./util.js";
 
@@ -34,6 +35,19 @@ function renderVotes() {
       bar.style.width = bar.dataset.w;
     });
   });
+}
+
+const promo = document.getElementById("promo");
+if (promo) {
+  promo.innerHTML = `
+    <div class="promo-row">
+      <img src="${ART.banners.masters}" alt="Masters of the Gigaverse auction">
+      <img class="banner-contain" src="${ART.banners.juice}" alt="Gigajuice now live">
+    </div>
+    <div class="promo-row promo-row-slim">
+      <img src="${ART.banners.abstract}" alt="Abstract chain badge">
+      <img src="${ART.banners.posters}" alt="GLHF wall posters">
+    </div>`;
 }
 
 document.getElementById("vote-list").addEventListener("click", (event) => {
